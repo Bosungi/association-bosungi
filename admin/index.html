@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Espace de publication · Association Bosungi</title>
+<link rel="icon" type="image/svg+xml" href="../img/logo.webp">
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Epilogue:wght@500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FFF4E6;--cream-2:#FCE8D2;--white:#FFFCF7;--amande-soft:#FFEFC2;
+  --sauge:#C8553A;--olive:#C8553A;--olive-deep:#9E3F28;--marron:#5A3424;--marron-deep:#3E2318;
+  --rose:#D9654F;--rose-deep:#B5402A;--rose-soft:#FBE0D8;--ocre:#E39B2D;--ocre-soft:#FFF1D6;--gold:#F2B705;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Albert Sans',sans-serif;background:var(--cream);color:#3B3124;line-height:1.6;font-size:16px}
+h1,h2,h3{font-family:'Epilogue',sans-serif;font-weight:600;color:var(--marron-deep);line-height:1.2}
+em.script{font-family:'Fraunces',serif;font-style:italic;color:var(--sauge);font-size:1.15em}
+.wrap{max-width:880px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;background:var(--olive);color:#FBF8F0;font-family:'Albert Sans',sans-serif;font-weight:700;font-size:15.5px;padding:15px 30px;border-radius:100px;border:none;cursor:pointer;transition:.25s;box-shadow:0 14px 30px -14px rgba(85,103,63,.55)}
+.btn:hover{background:var(--olive-deep);transform:translateY(-2px)}
+.btn:disabled{opacity:.55;cursor:wait;transform:none}
+.btn.ghost{background:none;color:var(--marron);border:1.6px solid rgba(110,82,58,.35);box-shadow:none}
+.btn.ghost:hover{background:rgba(110,82,58,.07)}
+
+.top{background:var(--white);border-bottom:1px solid rgba(110,82,58,.12);padding:14px 0;position:sticky;top:0;z-index:20}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1100px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:38px}
+.brand b{display:block;font-family:'Epilogue',sans-serif;font-size:17px;color:var(--marron-deep)}
+.brand small{font-size:10.5px;letter-spacing:2.4px;text-transform:uppercase;color:var(--sauge)}
+.logout{background:none;border:none;cursor:pointer;font-family:'Albert Sans';font-size:13.5px;color:#98876E;text-decoration:underline}
+
+.tabs{display:flex;gap:10px;justify-content:center;margin:30px 0 28px;flex-wrap:wrap}
+.tab{background:var(--white);border:1.6px solid rgba(110,82,58,.18);border-radius:100px;padding:12px 26px;font-family:'Albert Sans';font-weight:700;font-size:14.5px;color:var(--marron);cursor:pointer;transition:.25s}
+.tab.on{background:var(--olive);border-color:var(--olive);color:#fff}
+
+.login{min-height:100vh;display:grid;place-items:center;padding:30px 20px}
+.login-card{background:var(--white);border-radius:28px;padding:48px 44px;max-width:470px;width:100%;box-shadow:0 24px 60px -30px rgba(74,56,38,.3);text-align:center}
+.login-card img.crest{width:76px;margin:0 auto 20px;display:block}
+.login-card h1{font-size:26px;margin-bottom:8px}
+.login-card p.sub{color:#8A7A64;font-size:15px;margin-bottom:28px}
+.field{text-align:left;margin-bottom:18px}
+.field label{display:block;font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:#8A7A64;margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;font-family:'Albert Sans';font-size:15.5px;padding:14px 18px;border:1.6px solid rgba(110,82,58,.2);border-radius:14px;background:var(--cream);color:#3B3124;outline:none;transition:.25s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--sauge);background:#fff}
+.field .hint{font-size:12.5px;color:#98876E;margin-top:6px}
+.msg{border-radius:14px;padding:14px 18px;font-size:14.5px;margin-bottom:18px;display:none}
+.msg.err{display:block;background:var(--rose-soft);color:var(--rose-deep);font-weight:600}
+.msg.ok{display:block;background:var(--amande-soft);color:var(--olive-deep);font-weight:600}
+
+#app{display:none;padding:20px 0 70px}
+.page-title{text-align:center;margin-bottom:26px}
+.page-title h1{font-size:29px;margin-bottom:6px}
+.page-title p{color:#8A7A64;font-size:15px}
+.card{background:var(--white);border-radius:24px;padding:34px 32px;box-shadow:0 18px 46px -30px rgba(74,56,38,.28);border:1px solid rgba(110,82,58,.08)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+textarea{resize:vertical;min-height:280px;line-height:1.7}
+.inline-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.mini{background:var(--amande-soft);border:none;border-radius:100px;padding:9px 18px;font-family:'Albert Sans';font-weight:700;font-size:13.5px;color:var(--olive-deep);cursor:pointer;transition:.25s}
+.mini:hover{background:var(--sauge);color:#fff}
+.mini:disabled{opacity:.6;cursor:wait}
+.mini-hint{font-size:12.5px;color:#98876E}
+.tips{background:var(--amande-soft);border-radius:16px;padding:16px 20px;font-size:13.5px;color:#5C4F3E;margin-bottom:22px}
+.tips b{color:var(--marron-deep)}
+.drop{border:2px dashed rgba(110,82,58,.28);border-radius:16px;padding:24px;text-align:center;cursor:pointer;transition:.25s;background:var(--cream)}
+.drop:hover,.drop.over{border-color:var(--sauge);background:#fff}
+.drop p{font-size:14px;color:#8A7A64}
+.drop img{max-height:150px;border-radius:12px;margin-top:12px}
+.actions{display:flex;gap:14px;align-items:center;margin-top:26px;flex-wrap:wrap}
+
+.art{background:var(--white);border:1px solid rgba(110,82,58,.1);border-radius:18px;padding:18px 22px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:.25s}
+.art:hover{box-shadow:0 14px 34px -26px rgba(74,56,38,.35)}
+.art-info b{display:block;font-family:'Epilogue';font-size:16px;color:var(--marron-deep);margin-bottom:3px}
+.art-info small{color:#98876E;font-size:12.5px}
+.art-badge{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;padding:4px 11px;border-radius:100px;background:var(--amande-soft);color:var(--olive-deep);margin-right:8px}
+.art-btns{display:flex;gap:8px;flex-wrap:wrap;flex:none}
+.ab{border:1.5px solid rgba(110,82,58,.25);background:none;border-radius:100px;padding:8px 15px;font-family:'Albert Sans';font-weight:700;font-size:12.5px;color:var(--marron);cursor:pointer;text-decoration:none;transition:.25s;white-space:nowrap;display:inline-flex;align-items:center}
+.ab:hover{background:var(--cream-2)}
+.ab.edit{border-color:var(--sauge);color:var(--olive)}
+.ab.edit:hover{background:var(--olive);color:#fff}
+.ab.del{border-color:rgba(192,117,90,.4);color:var(--rose-deep)}
+.ab.del:hover{background:var(--rose-deep);color:#fff}
+
+.pagi{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:28px;flex-wrap:wrap}
+.pagi button{min-width:42px;height:42px;padding:0 14px;border-radius:100px;border:1.6px solid rgba(110,82,58,.2);background:var(--white);font-family:'Albert Sans',sans-serif;font-weight:700;font-size:14px;color:var(--marron);cursor:pointer;transition:.25s}
+.pagi button:hover:not(:disabled){background:var(--cream-2);border-color:var(--sauge)}
+.pagi button.on{background:var(--olive);border-color:var(--olive);color:#fff}
+.pagi button:disabled{opacity:.4;cursor:default}
+.pagi .infos{font-size:13px;color:#98876E;width:100%;text-align:center;margin-top:6px}
+.done{text-align:center;padding:20px 0}
+.done .heart{font-size:38px;color:var(--rose-deep)}
+.done h2{font-size:25px;margin:10px 0 8px}
+.done p{color:#5C4F3E;margin-bottom:22px}
+.spin{display:inline-block;width:15px;height:15px;border:2.4px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.loader{text-align:center;padding:40px;color:#98876E}
+@media(max-width:700px){.row{grid-template-columns:1fr}.card{padding:26px 20px}.login-card{padding:34px 24px}
+  .art{flex-direction:column;align-items:flex-start}.art-btns{width:100%}}
+</style>
+</head>
+<body>
+
+<!-- ============ CONNEXION ============ -->
+<div class="login" id="login">
+  <div class="login-card">
+    <img class="crest" src="../img/logo.webp" alt="Association Bosungi">
+    <h1>Espace de <em class="script">publication</em></h1>
+    <p class="sub">Bonjour Annie ! Connectez-vous pour publier vos actions sur le site.</p>
+    <div class="msg" id="loginMsg"></div>
+    <form id="loginForm">
+      <div class="field">
+        <label for="pwd">Votre mot de passe</label>
+        <input type="password" id="pwd" placeholder="Votre mot de passe" autocomplete="current-password" required>
+        <div class="hint">Votre navigateur s'en souviendra pour les prochaines fois.</div>
+      </div>
+      <button class="btn" type="submit" id="loginBtn" style="width:100%">Me connecter</button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ APPLICATION ============ -->
+<div class="top" id="top" style="display:none">
+  <div class="wrap">
+    <div class="brand">
+      <img src="../img/logo.webp" alt="">
+      <span><b>Espace de publication</b><small>Association Bosungi</small></span>
+    </div>
+    <button class="logout" id="logout">Se déconnecter</button>
+  </div>
+</div>
+
+<div id="app">
+  <div class="wrap">
+
+    <div class="tabs" id="tabs">
+      <button class="tab on" id="tabList">Mes actions</button>
+      <button class="tab" id="tabNew">Publier une nouvelle action</button>
+    </div>
+
+    <!-- ---------- LISTE ---------- -->
+    <div id="vueListe">
+      <div class="page-title">
+        <h1>Toutes vos <em class="script">actions</em></h1>
+        <p>Consultez, modifiez ou supprimez les actions publiées sur le site.</p>
+      </div>
+      <div class="msg" id="listMsg"></div>
+      <div id="liste"><div class="loader">Chargement de vos actions…</div></div>
+      <div class="pagi" id="pagiListe"></div>
+    </div>
+
+    <!-- ---------- ÉDITEUR ---------- -->
+    <div id="vueEditeur" style="display:none">
+      <div class="page-title">
+        <h1 id="edTitre">Publier une nouvelle <em class="script">action</em></h1>
+        <p id="edSous">Remplissez les cases, cliquez sur Publier : votre action sera en ligne dans 2 minutes.</p>
+      </div>
+
+      <div class="card">
+        <div class="msg" id="formMsg"></div>
+
+        <div class="field">
+          <label for="title">Titre de l'action</label>
+          <input type="text" id="title" placeholder="Ex : Rentrée scolaire 2026 : les cartables sont distribués" required>
+        </div>
+
+        <div class="field">
+          <label for="desc">Résumé (1 ou 2 phrases, affiché sur la carte de l'action)</label>
+          <input type="text" id="desc" placeholder="Ex : Fournitures, cartables et kits d'hygiène remis aux jeunes filles de la maison d'accueil." required>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="tag">Catégorie</label>
+            <input type="text" id="tag" list="cats" placeholder="Éducation, Aide sociale, Ateliers…" value="Maison d'accueil" required>
+            <datalist id="cats"><option value="Éducation"><option value="Aide sociale"><option value="Ateliers"><option value="Prévention"><option value="Maison d'accueil"><option value="Familles et communauté"><option value="Droits de l'enfant"><option value="L'association"></datalist>
+          </div>
+          <div class="field">
+            <label for="dateAct">Date de l'action</label>
+            <input type="date" id="dateAct" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Photo principale <span style="text-transform:none;letter-spacing:0;font-weight:400">(en grand tout en haut)</span></label>
+          <div class="drop" id="drop">
+            <p id="dropTxt">Cliquez ici ou glissez votre photo</p>
+            <img id="preview" style="display:none">
+          </div>
+          <input type="file" id="file" accept="image/*" hidden>
+          <input type="file" id="fileInline" accept="image/*" hidden>
+        </div>
+
+        <div class="field">
+          <label for="alt">Description de la photo <span style="text-transform:none;letter-spacing:0;font-weight:400">(aide Google)</span></label>
+          <input type="text" id="alt" placeholder="Ex : Les jeunes filles avec leurs nouveaux cartables">
+        </div>
+        <div class="field">
+          <label for="citation">Une phrase forte <span style="text-transform:none;letter-spacing:0;font-weight:400">(facultatif, affichée en grand dans l'action)</span></label>
+          <input type="text" id="citation" placeholder="Ex : L'école, c'est l'avenir !">
+        </div>
+
+        <div class="tips">
+          <b>Astuce :</b> pour créer un sous-titre dans votre texte, écrivez <b>####</b> juste devant la ligne.<br>
+          Exemple : <i>#### Une journée inoubliable</i>
+          <br><br>
+          <b>Vos photos :</b> la photo principale s'affiche en grand en haut de l'action. Pour en mettre <b>dans le texte</b>, utilisez le bouton ci-dessous.
+        </div>
+
+        <div class="field">
+          <label for="body">Texte de l'action</label>
+          <div class="inline-tools">
+            <button type="button" class="mini" id="addPhoto">Insérer une photo dans le texte</button>
+            <span class="mini-hint">Placez le curseur où vous voulez la photo, puis cliquez</span>
+          </div>
+          <textarea id="body" placeholder="Écrivez librement ici…&#10;&#10;Laissez une ligne vide entre vos paragraphes.&#10;&#10;#### Un sous-titre&#10;&#10;La suite de votre texte…" required></textarea>
+        </div>
+
+        <div class="actions">
+          <button class="btn" id="publish">Publier mon action</button>
+          <button class="btn ghost" id="cancelEdit" style="display:none">Annuler</button>
+          <a class="btn ghost" href="../actions.html#journal" target="_blank" rel="noopener">Voir la page Nos actions</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- CONFIRMATION ---------- -->
+    <div id="success" style="display:none">
+      <div class="card done">
+        <div class="heart">♥</div>
+        <h2 id="okTitre">C'est publié !</h2>
+        <p id="okTexte">Votre action sera visible sur le site dans environ 2 minutes.<br>Le site se met à jour tout seul.</p>
+        <div class="actions" style="justify-content:center">
+          <a class="btn" id="seeArticle" target="_blank" rel="noopener">Voir mon action</a>
+          <button class="btn ghost" id="backList">Retour à mes actions</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* Contrôle de compatibilité. Écrit volontairement en ancienne syntaxe pour
+   s'exécuter même si le navigateur est trop dépassé pour lire le script suivant. */
+window.__espaceOK = false;
+window.addEventListener("load", function () {
+  if (window.__espaceOK) return;
+  var el = document.getElementById("loginMsg");
+  if (!el) return;
+  el.className = "msg err";
+  el.textContent = "Votre navigateur est trop ancien pour cet espace. Ouvrez la page avec Google Chrome, Microsoft Edge ou Firefox à jour, puis reconnectez-vous.";
+});
+</script>
+
+<script>
+const REPO = "__REPO__";
+const API  = "https://api.github.com/repos/" + REPO;
+const KEY  = "bosungi_token";
+let TOKEN = localStorage.getItem(KEY) || "";
+
+/* Coffre-fort : la clé d'accès au site est chiffrée ici.
+   Seul le mot de passe d'Annie permet de la déchiffrer, dans son navigateur. */
+const COFFRE = "__COFFRE__";
+
+async function ouvrirCoffre(motDePasse) {
+  const raw = Uint8Array.from(atob(COFFRE), c => c.charCodeAt(0));
+  const sel = raw.slice(0, 16), iv = raw.slice(16, 28), data = raw.slice(28);
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(motDePasse), "PBKDF2", false, ["deriveKey"]);
+  const cle = await crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt: sel, iterations: 600000, hash: "SHA-256" },
+    base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+  return new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv }, cle, data));
+}
+
+const $ = id => document.getElementById(id);
+const imgUrl = v => !v ? "" : (v.indexOf("/") >= 0 ? "../" + v : "../img/" + v + ".webp");
+const show = (el, cls, txt) => { el.className = "msg " + cls; el.innerHTML = txt; };
+const hide = el => { el.className = "msg"; el.textContent = ""; };
+const b64 = str => btoa(unescape(encodeURIComponent(str)));
+const deb64 = str => decodeURIComponent(escape(atob(str.replace(/\n/g, ""))));
+
+function api(path, opts) {
+  opts = opts || {};
+  var entete = Object.assign(
+    { "Authorization": "Bearer " + TOKEN, "Accept": "application/vnd.github+json" },
+    opts.headers || {});
+  return fetch(API + path, Object.assign({}, opts, { headers: entete }));
+}
+function slugify(s) {
+  return s.normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60) || "article";
+}
+
+// ---------- connexion ----------
+$("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const btn = $("loginBtn");
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Connexion…';
+  try {
+    TOKEN = await ouvrirCoffre($("pwd").value.trim());
+    const r = await api("");
+    if (!r.ok) throw new Error();
+    localStorage.setItem(KEY, TOKEN);
+    entrer();
+  } catch (err) {
+    let msg = "Mot de passe incorrect. Vérifiez les majuscules et les tirets.";
+    if (!window.isSecureContext || !(window.crypto && window.crypto.subtle)) {
+      msg = "La page doit être ouverte en https. Tapez l'adresse du site suivie de /admin/ dans la barre d'adresse.";
+    } else if (err && err.name === "TypeError") {
+      msg = "Impossible de joindre le serveur. Vérifiez votre connexion internet, ou un antivirus / pare-feu qui bloquerait la page.";
+    } else if (err && err.name !== "OperationError") {
+      msg = "Un problème technique empêche la connexion (" + (err.name || "inconnu") + "). Envoyez-nous cette phrase, nous corrigeons.";
+    }
+    show($("loginMsg"), "err", msg);
+    btn.disabled = false; btn.textContent = "Me connecter";
+  }
+});
+$("logout").addEventListener("click", () => { localStorage.removeItem(KEY); location.reload(); });
+
+function entrer() {
+  if (dejaEntre) return;
+  dejaEntre = true;
+  $("login").style.display = "none";
+  $("top").style.display = "block";
+  $("app").style.display = "block";
+  chargerListe();
+}
+
+// ---------- navigation ----------
+function vue(nom) {
+  $("vueListe").style.display   = nom === "liste"   ? "block" : "none";
+  $("vueEditeur").style.display = nom === "editeur" ? "block" : "none";
+  $("success").style.display    = nom === "succes"  ? "block" : "none";
+  $("tabs").style.display       = nom === "succes"  ? "none"  : "flex";
+  $("tabList").classList.toggle("on", nom === "liste");
+  $("tabNew").classList.toggle("on", nom === "editeur");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+$("tabList").addEventListener("click", () => { vue("liste"); chargerListe(); });
+$("tabNew").addEventListener("click", () => nouvelArticle());
+$("backList").addEventListener("click", () => { vue("liste"); chargerListe(); });
+$("cancelEdit").addEventListener("click", () => vue("liste"));
+
+// ---------- liste des articles ----------
+let articles = [], chargementEnCours = false, dejaEntre = false;
+async function chargerListe() {
+  if (chargementEnCours) return;
+  chargementEnCours = true;
+  $("liste").innerHTML = '<div class="loader">Chargement de vos actions…</div>';
+  try {
+    const r = await api("/contents/content/actions");
+    if (!r.ok) throw new Error();
+    const fichiers = (await r.json()).filter(f => f.name.endsWith(".md"));
+    const trouves = [];
+    for (const f of fichiers) {
+      const j = await (await api("/contents/content/actions/" + f.name)).json();
+      const md = deb64(j.content);
+      const m = md.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+      const meta = {};
+      if (m) m[1].split("\n").forEach(l => {
+        const k = l.match(/^(\w+):\s*"?(.*?)"?\s*$/);
+        if (k) meta[k[1]] = k[2];
+      });
+      trouves.push({ nom: f.name, slug: f.name.replace(/\.md$/, ""), sha: j.sha, meta, corps: m ? m[2] : "" });
+    }
+    trouves.sort((a, b) => (b.meta.date || "").localeCompare(a.meta.date || ""));
+    articles = trouves;
+    afficherListe();
+  } catch {
+    $("liste").innerHTML = '<div class="loader">Impossible de charger la liste. Vérifiez votre connexion internet.</div>';
+  } finally {
+    chargementEnCours = false;
+  }
+}
+
+function dateFr(d) {
+  if (!d) return "";
+  const p = d.split("-");
+  const mois = ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+  return "Le " + parseInt(p[2]) + " " + mois[parseInt(p[1]) - 1] + " " + p[0];
+}
+
+let pageListe = 1;
+const PAR_PAGE = 10;
+
+function afficherListe() {
+  const total = Math.max(1, Math.ceil(articles.length / PAR_PAGE));
+  if (pageListe > total) pageListe = total;
+  const debut = (pageListe - 1) * PAR_PAGE;
+  const visibles = articles.slice(debut, debut + PAR_PAGE);
+
+  $("liste").innerHTML = visibles.map((a, k) => { const i = debut + k; return '<div class="art"><div class="art-info"><b>' + (a.meta.title || a.slug) + '</b>' +
+    '<small><span class="art-badge">' + (a.meta.categorie || a.meta.tag || "Action") + '</span>' + dateFr(a.meta.date) + '</small></div>' +
+    '<div class="art-btns">' +
+      '<a class="ab" href="../action-' + a.slug + '.html" target="_blank" rel="noopener">Voir</a>' +
+      '<button class="ab edit" data-i="' + i + '">Modifier</button>' +
+      '<button class="ab del" data-d="' + i + '">Supprimer</button>' +
+    '</div></div>'; }).join("") || '<div class="loader">Aucune action pour le moment.</div>';
+
+  // navigation entre les pages
+  const z = $("pagiListe");
+  if (articles.length <= PAR_PAGE) { z.innerHTML = ""; }
+  else {
+    let html = '<button ' + (pageListe === 1 ? 'disabled' : '') + ' data-p="' + (pageListe-1) + '">‹ Précédent</button>';
+    for (let n = 1; n <= total; n++)
+      html += '<button class="' + (n === pageListe ? 'on' : '') + '" data-p="' + n + '">' + n + '</button>';
+    html += '<button ' + (pageListe === total ? 'disabled' : '') + ' data-p="' + (pageListe+1) + '">Suivant ›</button>';
+    html += '<span class="infos">Page ' + pageListe + ' sur ' + total + ' · ' + articles.length + ' actions</span>';
+    z.innerHTML = html;
+    z.querySelectorAll('button[data-p]').forEach(bt => bt.addEventListener('click', () => {
+      const n = +bt.dataset.p;
+      if (n < 1 || n > total) return;
+      pageListe = n; afficherListe();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }));
+  }
+
+  $("liste").querySelectorAll("[data-i]").forEach(b => b.addEventListener("click", () => modifierArticle(+b.dataset.i)));
+  $("liste").querySelectorAll("[data-d]").forEach(b => b.addEventListener("click", () => supprimerArticle(+b.dataset.d)));
+}
+
+// ---------- suppression ----------
+async function supprimerArticle(i) {
+  const a = articles[i];
+  if (!confirm("Voulez-vous vraiment supprimer l'action :\n\n« " + (a.meta.title || a.slug) + " »\n\nElle disparaîtra du site dans 2 minutes.")) return;
+  hide($("listMsg"));
+  try {
+    const r = await api("/contents/content/actions/" + a.nom, {
+      method: "DELETE",
+      body: JSON.stringify({ message: "Suppression de l article : " + a.slug, sha: a.sha }) });
+    if (!r.ok) throw new Error();
+    show($("listMsg"), "ok", "Action supprimée. Elle disparaîtra du site dans environ 2 minutes.");
+    chargerListe();
+  } catch {
+    show($("listMsg"), "err", "La suppression n'a pas fonctionné. Réessayez dans un instant.");
+  }
+}
+
+// ---------- édition ----------
+let modeEdition = null;
+let blocsSpeciaux = [];
+
+function corpsVersTexte(html) {
+  blocsSpeciaux = [];
+  return html.split(/\n(?=<)/).map(l => {
+    l = l.trim();
+    if (!l) return "";
+    let m = l.match(/^<h4>([\s\S]*?)<\/h4>$/);
+    if (m) return "#### " + m[1];
+    m = l.match(/^<figure class="art-img"><img src="([^"]*)"[^>]*><\/figure>$/);
+    if (m) { blocsSpeciaux.push(l); return "[photo enregistrée " + blocsSpeciaux.length + "]"; }
+    m = l.match(/^<p>([\s\S]*?)<\/p>$/);
+    if (m) return m[1].replace(/<br\s*\/?>/g, "\n");
+    blocsSpeciaux.push(l);
+    return "[encadré " + blocsSpeciaux.length + "]";
+  }).filter(Boolean).join("\n\n");
+}
+
+function modifierArticle(i) {
+  const a = articles[i];
+  modeEdition = { nom: a.nom, sha: a.sha, slug: a.slug, image: a.meta.image, date: a.meta.date, photos: a.meta.photos || "" };
+  $("title").value = a.meta.title || "";
+  $("desc").value  = a.meta.resume || a.meta.description || "";
+  $("tag").value   = a.meta.categorie || a.meta.tag || "";
+  $("dateAct").value = a.meta.date || "";
+  $("citation").value = a.meta.citation || "";
+  $("alt").value   = a.meta.alt || "";
+  $("body").value  = /^\s*</.test(a.corps) ? corpsVersTexte(a.corps) : a.corps.trim();
+  imageData = null; inlinePhotos = [];
+  $("preview").src = imgUrl(a.meta.image);
+  $("preview").style.display = "block";
+  $("dropTxt").textContent = "Photo actuelle — cliquez pour la remplacer";
+  $("edTitre").innerHTML = 'Modifier votre <em class="script">action</em>';
+  $("edSous").textContent = "Changez ce que vous voulez, puis enregistrez.";
+  $("publish").textContent = "Enregistrer les modifications";
+  $("cancelEdit").style.display = "inline-flex";
+  hide($("formMsg"));
+  vue("editeur");
+}
+
+function nouvelArticle() {
+  modeEdition = null; blocsSpeciaux = [];
+  ["title","desc","alt","body","citation"].forEach(id => $(id).value = "");
+  $("tag").value = "Maison d'accueil"; $("dateAct").value = new Date().toISOString().slice(0, 10);
+  imageData = null; inlinePhotos = [];
+  $("preview").style.display = "none";
+  $("dropTxt").textContent = "Cliquez ici ou glissez votre photo";
+  $("edTitre").innerHTML = 'Publier une nouvelle <em class="script">action</em>';
+  $("edSous").textContent = "Remplissez les cases, cliquez sur Publier : votre action sera en ligne dans 2 minutes.";
+  $("publish").textContent = "Publier mon action";
+  $("cancelEdit").style.display = "none";
+  hide($("formMsg"));
+  vue("editeur");
+}
+
+// ---------- photos ----------
+let imageData = null, imageExt = ".jpg";
+$("drop").addEventListener("click", () => $("file").click());
+$("drop").addEventListener("dragover", e => { e.preventDefault(); $("drop").classList.add("over"); });
+$("drop").addEventListener("dragleave", () => $("drop").classList.remove("over"));
+$("drop").addEventListener("drop", e => { e.preventDefault(); $("drop").classList.remove("over"); lireFichier(e.dataTransfer.files[0]); });
+$("file").addEventListener("change", e => lireFichier(e.target.files[0]));
+
+function lireFichier(f) {
+  if (!f || !f.type.startsWith("image/")) return;
+  imageExt = f.type.indexOf("png") >= 0 ? ".png" : ".jpg";
+  const rd = new FileReader();
+  rd.onload = () => {
+    imageData = rd.result.split(",")[1];
+    $("preview").src = rd.result;
+    $("preview").style.display = "block";
+    $("dropTxt").textContent = "Photo prête — cliquez pour en choisir une autre";
+  };
+  rd.readAsDataURL(f);
+}
+
+let inlinePhotos = [];
+$("addPhoto").addEventListener("click", () => $("fileInline").click());
+$("fileInline").addEventListener("change", e => {
+  const f = e.target.files[0];
+  if (!f || !f.type.startsWith("image/")) return;
+  const btn = $("addPhoto");
+  btn.disabled = true; btn.textContent = "Chargement de la photo…";
+  const rd = new FileReader();
+  rd.onload = () => {
+    const n = inlinePhotos.length + 1;
+    inlinePhotos.push({ data: rd.result.split(",")[1], ext: f.type.indexOf("png") >= 0 ? ".png" : ".jpg", marker: "[photo" + n + "]" });
+    const ta = $("body"), pos = ta.selectionStart, txt = ta.value;
+    const bloc = (pos > 0 && txt[pos-1] !== "\n" ? "\n\n" : "") + "[photo" + n + "]\n\n";
+    ta.value = txt.slice(0, pos) + bloc + txt.slice(pos);
+    ta.focus(); ta.selectionStart = ta.selectionEnd = pos + bloc.length;
+    btn.disabled = false; btn.textContent = "Insérer une photo dans le texte";
+    show($("formMsg"), "ok", "Photo " + n + " ajoutée dans votre texte.");
+    setTimeout(() => hide($("formMsg")), 4000);
+  };
+  rd.readAsDataURL(f);
+  e.target.value = "";
+});
+
+// ---------- publier / enregistrer ----------
+$("publish").addEventListener("click", async () => {
+  const title = $("title").value.trim(), desc = $("desc").value.trim(),
+        tag = $("tag").value.trim(), body = $("body").value.trim();
+  hide($("formMsg"));
+  if (!title || !desc || !tag || !body) {
+    show($("formMsg"), "err", "Merci de remplir le titre, le résumé, la catégorie et le texte.");
+    window.scrollTo({ top: 0, behavior: "smooth" }); return;
+  }
+  const btn = $("publish"), libelle = btn.textContent;
+  btn.disabled = true; btn.innerHTML = '<span class="spin"></span> Enregistrement…';
+
+  try {
+    const slug = modeEdition ? modeEdition.slug : (($("dateAct").value || new Date().toISOString().slice(0, 10)).slice(0, 7) + "-" + slugify(title).slice(0, 50));
+    let imgPath = modeEdition ? (modeEdition.image || "groupe2") : "groupe2";
+
+    if (imageData) {
+      imgPath = "img/uploads/" + slug + "-" + Date.now() + imageExt;
+      const up = await api("/contents/" + imgPath, {
+        method: "PUT", body: JSON.stringify({ message: "Photo : " + slug, content: imageData }) });
+      if (!up.ok) throw new Error("photo");
+    }
+
+    for (let i = 0; i < inlinePhotos.length; i++) {
+      const ph = inlinePhotos[i];
+      ph.path = "img/uploads/" + slug + "-txt" + Date.now() + "-" + (i + 1) + ph.ext;
+      const r2 = await api("/contents/" + ph.path, {
+        method: "PUT", body: JSON.stringify({ message: "Photo article : " + slug, content: ph.data }) });
+      if (!r2.ok) throw new Error("photo");
+    }
+
+    const html = body.split(/\n\s*\n/).map(p => {
+      p = p.trim();
+      if (!p) return "";
+      // un bloc peut contenir un sous-titre (ligne commençant par ####) suivi de texte,
+      // ou plusieurs sous-titres : on découpe ligne par ligne au lieu de tout mettre en titre
+      if (/(^|\n)\s*#{2,}/.test(p)) {
+        const morceaux = [];
+        let tampon = [];
+        const viderTampon = () => {
+          if (tampon.length) { morceaux.push("<p>" + tampon.join("<br>") + "</p>"); tampon = []; }
+        };
+        for (const ligne of p.split("\n")) {
+          const l = ligne.trim();
+          if (/^#{2,}/.test(l)) {
+            viderTampon();
+            const titre = l.replace(/^#+\s*/, "").trim();
+            if (titre) morceaux.push("<h4>" + titre + "</h4>");
+          } else if (l) { tampon.push(l); }
+        }
+        viderTampon();
+        return morceaux.join("\n");
+      }
+      for (const ph of inlinePhotos) if (ph.marker === p)
+        return '<figure class="art-img"><img src="' + ph.path + '" alt="' + (($("alt").value.trim() || title).replace(/"/g, "'")) + '"></figure>';
+      const bs = p.match(/^\[(?:encadré|photo enregistrée) (\d+)\]$/);
+      if (bs && blocsSpeciaux[+bs[1] - 1]) return blocsSpeciaux[+bs[1] - 1];
+      return "<p>" + p.replace(/\n/g, "<br>") + "</p>";
+    }).filter(Boolean).join("\n");
+
+    const date = $("dateAct").value || (modeEdition && modeEdition.date) || new Date().toISOString().slice(0, 10);
+    const q = v => '"' + String(v).replace(/"/g, "'") + '"';
+    const cit = $("citation").value.trim();
+    const md = '---\ntitle: ' + q(title) + '\n' +
+               'resume: ' + q(desc) + '\n' +
+               'date: ' + date + '\n' +
+               'categorie: ' + q(tag) + '\n' +
+               'image: ' + q(imgPath) + '\n' +
+               'alt: ' + q($("alt").value.trim() || title) + '\n' +
+               (cit ? 'citation: ' + q(cit) + '\n' : '') +
+               (modeEdition && modeEdition.photos ? 'photos: ' + modeEdition.photos + '\n' : '') +
+               '---\n' + html + "\n";
+
+    const corps = { message: (modeEdition ? "Modification : " : "Nouvel article : ") + title, content: b64(md) };
+    if (modeEdition) corps.sha = modeEdition.sha;
+
+    const r = await api("/contents/content/actions/" + slug + ".md", { method: "PUT", body: JSON.stringify(corps) });
+    if (!r.ok) { const e = await r.json(); throw new Error(e.message || "publication"); }
+
+    $("seeArticle").href = "../action-" + slug + ".html";
+    $("okTitre").textContent = modeEdition ? "Modifications enregistrées !" : "C'est publié !";
+    $("okTexte").innerHTML = (modeEdition ? "Votre action mise à jour" : "Votre action") +
+      " sera visible sur le site dans environ 2 minutes.<br>Le site se met à jour tout seul.";
+    vue("succes");
+  } catch (err) {
+    const m = String(err.message);
+    show($("formMsg"), "err",
+      (m.indexOf("sha") >= 0 || m.indexOf("exists") >= 0)
+        ? "Une action porte déjà ce titre. Changez légèrement le titre et réessayez."
+        : "L'enregistrement n'a pas fonctionné. Vérifiez votre connexion internet et réessayez.");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } finally {
+    btn.disabled = false; btn.textContent = libelle;
+  }
+});
+
+// connexion automatique
+if (TOKEN) api("").then(r => { if (r.ok && !dejaEntre) entrer(); else if (!r.ok) localStorage.removeItem(KEY); }).catch(() => {});
+
+// le script a été lu jusqu'au bout : le navigateur est compatible
+window.__espaceOK = true;
+</script>
+</body>
+</html>

@@ -1,0 +1,989 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Association Bosungi — Un espoir, un avenir · Kinshasa</title>
+<meta name="description" content="L'association Bosungi accueille, protège et accompagne les orphelines et les jeunes filles vulnérables à Kinshasa. Maison d'accueil ouverte depuis le 2 septembre 2026.">
+<link rel="icon" href="__IMG_emblem__">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Epilogue:wght@500;600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFFFF;
+  --cloud:#F3F7FC;
+  --mist:#E6EFF9;
+  --ink:#0E1E3A;
+  --ink-2:#3A4A66;
+  --ink-3:#6B7A93;
+  --sky:#2F7FD1;
+  --sky-soft:#5AA2E8;
+  --sky-tint:#DCEBFA;
+  --sun:#F2B705;
+  --sun-deep:#C98F00;
+  --sun-tint:#FFF4CF;
+  --lagoon:#16AEDC;
+  --line:rgba(14,30,58,.10);
+  --r-lg:28px; --r-md:20px; --r-sm:12px;
+  --shadow:0 1px 2px rgba(14,30,58,.06),0 12px 32px -12px rgba(14,30,58,.18);
+  --ease:cubic-bezier(.16,1,.3,1);
+  --wrap:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Albert Sans',system-ui,sans-serif;color:var(--ink);background:var(--white);line-height:1.6;font-size:17px;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{width:min(var(--wrap),100% - 40px);margin-inline:auto}
+h1,h2,h3,h4{font-family:'Epilogue',sans-serif;line-height:1.08;letter-spacing:-.02em;font-weight:700}
+.accent{font-family:'Fraunces',serif;font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--sky)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--sky)}
+.eyebrow::before{content:"";width:22px;height:22px;flex:none;background:radial-gradient(circle at 50% 100%,var(--sun) 0 34%,transparent 35%),conic-gradient(from 270deg at 50% 100%,var(--sun) 0 4deg,transparent 4deg 18deg,var(--sun) 18deg 22deg,transparent 22deg 36deg,var(--sun) 36deg 40deg,transparent 40deg 54deg,var(--sun) 54deg 58deg,transparent 58deg 72deg,var(--sun) 72deg 76deg,transparent 76deg 90deg,var(--sun) 90deg 94deg,transparent 94deg 108deg,var(--sun) 108deg 112deg,transparent 112deg 126deg,var(--sun) 126deg 130deg,transparent 130deg 144deg,var(--sun) 144deg 148deg,transparent 148deg 162deg,var(--sun) 162deg 166deg,transparent 166deg 180deg,transparent 180deg);clip-path:inset(0 0 50% 0);transform:translateY(5px)}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:999px;font-weight:600;font-size:16px;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .3s}
+.btn svg{width:18px;height:18px;transition:transform .35s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.btn-primary{background:var(--ink);color:#fff;box-shadow:0 10px 24px -10px rgba(14,30,58,.55)}
+.btn-primary:hover{transform:translateY(-2px);background:#152a50}
+.btn-sun{background:var(--sun);color:var(--ink);box-shadow:0 10px 24px -10px rgba(201,143,0,.6)}
+.btn-sun:hover{transform:translateY(-2px);background:#ffc31a}
+.btn-ghost{background:var(--white);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--ink)}
+section{position:relative}
+.sec{padding:120px 0}
+.sec-head{max-width:720px;margin-bottom:56px}
+.sec-head h2{font-size:clamp(34px,4.6vw,56px);margin:16px 0 18px}
+.sec-head p{font-size:19px;color:var(--ink-2);max-width:620px}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .4s,box-shadow .4s,transform .4s var(--ease)}
+.nav:not(.scrolled):not(.open) .brand b,.nav:not(.scrolled):not(.open) .menu a:not(.btn){color:#fff}
+.nav:not(.scrolled):not(.open) .brand small{color:rgba(255,255,255,.75)}
+.nav:not(.scrolled):not(.open) .menu a:not(.btn):hover{background:rgba(255,255,255,.14)}
+.nav:not(.scrolled):not(.open) .burger{background:rgba(255,255,255,.18)}.nav:not(.scrolled):not(.open) .burger span,.nav:not(.scrolled):not(.open) .burger span::before,.nav:not(.scrolled):not(.open) .burger span::after{background:#fff}
+.nav:not(.scrolled):not(.open) .brand img{filter:drop-shadow(0 2px 8px rgba(0,0,0,.35))}
+.nav.scrolled{background:rgba(255,255,255,.86);backdrop-filter:saturate(1.6) blur(14px);-webkit-backdrop-filter:saturate(1.6) blur(14px);box-shadow:0 1px 0 var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:80px;gap:24px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:48px;width:auto}
+.brand b{font-family:'Epilogue';font-size:19px;letter-spacing:-.01em;line-height:1}
+.brand small{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin-top:4px}
+.menu{display:flex;gap:4px;align-items:center}
+.menu a{padding:9px 14px;border-radius:999px;font-size:15px;font-weight:500;color:var(--ink-2);transition:background .25s,color .25s}
+.menu a:hover{background:var(--cloud);color:var(--ink)}
+.menu .btn{margin-left:10px;padding:11px 20px;font-size:15px}
+.burger{display:none;width:46px;height:46px;border-radius:50%;background:var(--cloud);place-items:center}
+.burger span{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;position:relative;transition:transform .3s}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s,top .3s}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.nav.open .burger span{background:transparent}
+.nav.open .burger span::before{top:0;transform:rotate(45deg)}
+.nav.open .burger span::after{top:0;transform:rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+.hero{padding:150px 0 90px;overflow:hidden;background:linear-gradient(180deg,var(--cloud) 0%,var(--white) 78%)}
+.hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(46px,7vw,92px);font-weight:800;letter-spacing:-.035em;margin:22px 0 26px}
+.hero h1 .accent{font-weight:400;letter-spacing:-.02em}
+.hero-lead{font-size:20px;color:var(--ink-2);max-width:540px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.hero-meta{display:flex;gap:28px;margin-top:44px;padding-top:28px;border-top:1px solid var(--line);flex-wrap:wrap}
+.hero-meta div{font-size:14px;color:var(--ink-3);line-height:1.4}
+.hero-meta strong{display:block;font-family:'Epilogue';font-size:22px;color:var(--ink);letter-spacing:-.01em}
+.hero-visual{position:relative;aspect-ratio:1/1.02}
+.sunrays{position:absolute;left:50%;top:2%;width:96%;transform:translateX(-50%);overflow:visible;pointer-events:none}
+.sunrays .ray{stroke:var(--sun);stroke-width:9;stroke-linecap:round;transform-origin:250px 250px;opacity:0;animation:rayIn .9s var(--ease) forwards}
+.sunrays .arc{fill:none;stroke:var(--sun);stroke-width:16;stroke-linecap:round;stroke-dasharray:800;stroke-dashoffset:800;animation:arcDraw 1.6s .2s var(--ease) forwards}
+.sunrays g.spin{transform-origin:250px 250px;animation:breathe 7s 2s ease-in-out infinite}
+@keyframes arcDraw{to{stroke-dashoffset:0}}
+@keyframes rayIn{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+@keyframes breathe{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.04) rotate(2deg)}}
+.hv-main{position:absolute;left:9%;right:9%;top:22%;bottom:0;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow);clip-path:inset(100% 0 0 0 round var(--r-lg));animation:unmask 1.3s .45s var(--ease) forwards}
+.hv-main img{width:100%;height:100%;object-fit:cover;transform:scale(1.12);animation:settle 1.8s .45s var(--ease) forwards}
+@keyframes unmask{to{clip-path:inset(0 0 0 0 round var(--r-lg))}}
+@keyframes settle{to{transform:scale(1)}}
+.hv-round{position:absolute;width:31%;aspect-ratio:1;border-radius:50%;overflow:hidden;left:-2%;bottom:8%;border:6px solid #fff;box-shadow:var(--shadow);opacity:0;animation:pop 1s 1.1s var(--ease) forwards}
+.hv-round img{width:100%;height:100%;object-fit:cover}
+.hv-chip{position:absolute;right:-1%;bottom:16%;background:#fff;border-radius:18px;padding:14px 18px;box-shadow:var(--shadow);display:flex;gap:12px;align-items:center;max-width:250px;opacity:0;animation:pop 1s 1.35s var(--ease) forwards}
+.hv-chip i{flex:none;width:42px;height:42px;border-radius:12px;background:var(--sun-tint);display:grid;place-items:center}
+.hv-chip i svg{width:22px;height:22px;color:var(--sun-deep)}
+.hv-chip b{display:block;font-size:14px;line-height:1.25}
+.hv-chip span{font-size:13px;color:var(--ink-3);line-height:1.3;display:block;margin-top:2px}
+.hv-chip.top{right:auto;left:62%;bottom:auto;top:30%;animation-delay:1.6s}
+.hv-chip.top i{background:var(--sky-tint)}.hv-chip.top i svg{color:var(--sky)}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:none}}
+
+/* word reveal */
+.wr .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.wr .w>span{display:inline-block;transform:translateY(105%);transition:transform 1s var(--ease);transition-delay:calc(var(--i)*70ms + 120ms)}
+.wr.in .w>span{transform:none}
+
+/* ---------- MARQUEE ---------- */
+.marquee{background:var(--ink);color:#fff;overflow:hidden;padding:22px 0;--gap:56px}
+.mq-track{display:flex;gap:var(--gap);width:max-content;animation:mq 38s linear infinite}
+.mq-track span{font-family:'Epilogue';font-size:clamp(20px,2.4vw,30px);font-weight:600;white-space:nowrap;display:flex;align-items:center;gap:var(--gap)}
+.mq-track span::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--sun)}
+.mq-track .accent{color:var(--sky-soft)}
+.marquee:hover .mq-track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(calc(-50% - var(--gap)/2))}}
+
+/* ---------- MISSION ---------- */
+.mission-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:72px;align-items:center}
+.mission-pics{position:relative;aspect-ratio:1/1.08}
+.mission-pics figure{position:absolute;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
+.mission-pics figure img{width:100%;height:100%;object-fit:cover}
+.mp1{left:0;top:0;width:72%;height:70%}
+.mp2{right:0;bottom:0;width:56%;height:52%;border:6px solid #fff}
+.mission-badge{position:absolute;left:6%;bottom:6%;background:var(--sun);color:var(--ink);border-radius:50%;width:132px;height:132px;display:grid;place-items:center;text-align:center;font-family:'Epilogue';font-weight:700;line-height:1.1;font-size:15px;box-shadow:var(--shadow)}
+.mission-badge span{font-size:34px;display:block;letter-spacing:-.03em}
+.mission-text h2{font-size:clamp(34px,4.4vw,54px);margin:16px 0 24px}
+.mission-text p{color:var(--ink-2);font-size:18px;margin-bottom:18px}
+.mission-text .lede{font-size:21px;color:var(--ink);font-weight:500}
+.name-def{margin-top:30px;display:flex;gap:18px;align-items:flex-start;background:var(--cloud);border-radius:var(--r-md);padding:22px 24px}
+.name-def b{font-family:'Fraunces';font-style:italic;font-weight:500;font-size:28px;color:var(--sky);line-height:1}
+.name-def p{margin:0;font-size:15.5px}
+
+/* ---------- APPROCHE ---------- */
+.approach{background:var(--cloud);overflow:hidden}
+.ap-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}
+.ap-tabs{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.ap-tab{display:flex;align-items:center;gap:18px;text-align:left;padding:20px 22px;border-radius:var(--r-md);background:transparent;transition:background .35s,box-shadow .35s}
+.ap-tab .n{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:'Epilogue';font-weight:700;background:#fff;color:var(--ink-3);transition:background .35s,color .35s}
+.ap-tab h3{font-size:21px;font-weight:600}
+.ap-tab p{font-size:14.5px;color:var(--ink-3);margin-top:3px;line-height:1.4}
+.ap-tab[aria-selected="true"]{background:#fff;box-shadow:var(--shadow)}
+.ap-tab[aria-selected="true"] .n{background:var(--sky);color:#fff}
+.ap-panel{position:relative;border-radius:var(--r-lg);overflow:hidden;background:#fff;box-shadow:var(--shadow);min-height:540px}
+.ap-pane{position:absolute;inset:0;display:grid;grid-template-rows:1fr auto;opacity:0;visibility:hidden;transition:opacity .6s var(--ease),visibility .6s}
+.ap-pane.on{opacity:1;visibility:visible}
+.ap-pane .ph{overflow:hidden}
+.ap-pane img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 1.4s var(--ease)}
+.ap-pane.on img{transform:scale(1)}
+.ap-pane .tx{padding:28px 32px 32px}
+.ap-pane h4{font-size:24px;margin-bottom:8px}
+.ap-pane p{color:var(--ink-2);font-size:16.5px}
+.mukwege{margin-top:36px;padding:22px 24px;border-left:4px solid var(--sun);background:#fff;border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:15.5px;color:var(--ink-2)}
+.mukwege b{color:var(--ink)}
+
+/* ---------- PRESIDENTE ---------- */
+.pres{overflow:hidden}
+.pres-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.pres-photo{position:relative}
+.pres-photo .frame{position:relative;border-radius:240px 240px var(--r-lg) var(--r-lg);overflow:hidden;aspect-ratio:4/5.2;box-shadow:var(--shadow);background:var(--sky-tint)}
+.pres-photo .frame img{width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.pres-photo .halo{position:absolute;left:-15%;width:130%;top:0;margin-top:-15%;z-index:-1;overflow:visible}
+.pres-sig{position:absolute;right:-28px;bottom:42px;background:#fff;border-radius:var(--r-md);padding:16px 20px;box-shadow:var(--shadow)}
+.pres-sig b{display:block;font-family:'Epilogue';font-size:16px}
+.pres-sig span{font-size:13px;color:var(--ink-3)}
+.pres h2{font-size:clamp(36px,4.6vw,58px);margin:16px 0 8px}
+.pres .role{font-size:15px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sun-deep);margin-bottom:26px}
+.pres p{color:var(--ink-2);font-size:18px;margin-bottom:18px}
+.pres-quotes{display:grid;gap:12px;margin:30px 0}
+.pres-quotes blockquote{background:var(--cloud);border-radius:var(--r-md);padding:18px 22px;font-family:'Fraunces';font-style:italic;font-size:19px;line-height:1.4;color:var(--ink)}
+.pres-quotes cite{display:block;font-family:'Albert Sans';font-style:normal;font-size:13px;color:var(--ink-3);margin-top:6px}
+.video-card{display:flex;align-items:center;gap:18px;padding:12px;border-radius:var(--r-md);box-shadow:inset 0 0 0 1.5px var(--line);transition:box-shadow .3s,transform .35s var(--ease)}
+.video-card:hover{box-shadow:inset 0 0 0 1.5px var(--sky);transform:translateY(-2px)}
+.video-card .thumb{position:relative;flex:none;width:150px;aspect-ratio:16/10;border-radius:12px;overflow:hidden}
+.video-card .thumb img{width:100%;height:100%;object-fit:cover}
+.video-card .thumb::after{content:"";position:absolute;inset:0;background:rgba(14,30,58,.25)}
+.video-card .play{position:absolute;z-index:2;left:50%;top:50%;width:42px;height:42px;margin:-21px 0 0 -21px;border-radius:50%;background:#fff;display:grid;place-items:center}
+.video-card .play svg{width:16px;height:16px;margin-left:3px;color:var(--ink)}
+.video-card b{display:block;font-size:16px;line-height:1.3}
+.video-card span{font-size:14px;color:var(--ink-3)}
+
+/* ---------- MAISON ---------- */
+.maison{background:var(--ink);color:#fff;overflow:hidden}
+.maison .eyebrow{color:var(--sun)}
+.maison .sec-head p{color:rgba(255,255,255,.72)}
+.maison .accent{color:var(--sun)}
+.m-hero{position:relative;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:21/9}
+.m-hero img{width:100%;height:118%;object-fit:cover;will-change:transform}
+.m-hero .cap{position:absolute;left:24px;bottom:24px;right:24px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.m-hero .tag{background:rgba(255,255,255,.95);color:var(--ink);border-radius:999px;padding:10px 18px;font-weight:600;font-size:15px;display:inline-flex;gap:10px;align-items:center}
+.m-hero .tag i{width:9px;height:9px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.m-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px}
+.m-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-md);overflow:hidden;transition:transform .45s var(--ease),background .3s}
+.m-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.09)}
+.m-card .ph{aspect-ratio:4/3;overflow:hidden}
+.m-card img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+.m-card:hover img{transform:scale(1.05)}
+.m-card .tx{padding:22px 24px 26px}
+.m-card h3{font-size:20px;margin-bottom:6px}
+.m-card p{font-size:15.5px;color:rgba(255,255,255,.7)}
+.m-info{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px}
+.m-info div{border-top:1px solid rgba(255,255,255,.16);padding-top:18px}
+.m-info small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sun);font-weight:600;margin-bottom:6px}
+.m-info b{font-family:'Epilogue';font-size:19px;font-weight:600;line-height:1.3}
+
+/* ---------- AXES ---------- */
+.axes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.axe{position:relative;border-radius:var(--r-md);padding:30px 26px 28px;background:var(--cloud);overflow:hidden;transition:transform .45s var(--ease),background .35s,color .35s}
+.axe::before{content:"";position:absolute;right:-40px;top:-40px;width:130px;height:130px;border-radius:50%;background:var(--c,var(--sky-tint));transition:transform .6s var(--ease)}
+.axe:hover{transform:translateY(-6px);background:#fff;box-shadow:var(--shadow)}
+.axe:hover::before{transform:scale(1.6)}
+.axe .ic{position:relative;width:52px;height:52px;border-radius:16px;background:#fff;display:grid;place-items:center;margin-bottom:56px;box-shadow:0 2px 6px rgba(14,30,58,.06)}
+.axe .ic svg{width:26px;height:26px;color:var(--sky)}
+.axe h3{position:relative;font-size:21px;margin-bottom:10px}
+.axe p{position:relative;font-size:15.5px;color:var(--ink-2)}
+.axe:nth-child(2){--c:var(--sun-tint)}.axe:nth-child(2) .ic svg{color:var(--sun-deep)}
+.axe:nth-child(3){--c:#D6F3FB}.axe:nth-child(3) .ic svg{color:var(--lagoon)}
+.axe:nth-child(4){--c:#E9E3FB}.axe:nth-child(4) .ic svg{color:#6D4FD8}
+.stat-band{margin-top:22px;display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center;padding:34px 38px;border-radius:var(--r-lg);background:linear-gradient(120deg,var(--sky) 0%,#1f63ad 100%);color:#fff}
+.stat-band .big{font-family:'Epilogue';font-weight:800;font-size:clamp(48px,6vw,78px);letter-spacing:-.04em;line-height:1}
+.stat-band .big small{font-size:.4em;letter-spacing:0;font-weight:600;margin-left:6px}
+.stat-band p{font-size:18px;color:rgba(255,255,255,.88);max-width:620px}
+.stat-band p b{color:#fff}
+
+/* ---------- TIMELINE ---------- */
+.tl{position:relative;max-width:980px;margin-inline:auto}
+.tl-line{position:absolute;left:50%;top:0;bottom:0;width:3px;margin-left:-1.5px;background:var(--mist);border-radius:3px}
+.tl-fill{position:absolute;left:0;top:0;width:100%;height:0;background:linear-gradient(var(--sun),var(--sky));border-radius:3px}
+.tl-item{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:72px;padding:26px 0}
+.tl-item .dot{position:absolute;left:50%;top:44px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#fff;border:3px solid var(--mist);transition:border-color .4s,transform .4s var(--ease),background .4s;z-index:2}
+.tl-item.lit .dot{border-color:var(--sun);background:var(--sun);transform:scale(1.15)}
+.tl-card{background:#fff;border-radius:var(--r-md);box-shadow:var(--shadow);overflow:hidden}
+.tl-card .ph{aspect-ratio:16/9;overflow:hidden}
+.tl-card .ph img{width:100%;height:100%;object-fit:cover}
+.tl-card .tx{padding:20px 24px 24px}
+.tl-date{font-family:'Epilogue';font-weight:700;color:var(--sky);font-size:15px;letter-spacing:.02em;margin-bottom:6px}
+.tl-card h3{font-size:20px;margin-bottom:6px}
+.tl-card p{font-size:15.5px;color:var(--ink-2)}
+.tl-item:nth-child(even) .tl-card{grid-column:1;grid-row:1}
+.tl-item:nth-child(odd) .tl-card{grid-column:2;grid-row:1}
+.tl-item .tl-side{display:flex;align-items:flex-start;padding-top:36px;font-family:'Fraunces';font-style:italic;font-size:22px;color:var(--ink-3)}
+.tl-item:nth-child(even) .tl-side{grid-column:2;grid-row:1}
+.tl-item:nth-child(odd) .tl-side{grid-column:1;grid-row:1;justify-content:flex-end;text-align:right}
+
+/* ---------- GALERIE ---------- */
+.gal-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.gal-bar button{padding:10px 18px;border-radius:999px;font-weight:600;font-size:15px;background:var(--cloud);color:var(--ink-2);transition:background .3s,color .3s}
+.gal-bar button.on{background:var(--ink);color:#fff}
+.gal{columns:4 240px;column-gap:14px}
+.gal figure{break-inside:avoid;margin-bottom:14px;border-radius:var(--r-sm);overflow:hidden;cursor:zoom-in;position:relative;transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.gal figure.hide{display:none}
+.gal figure img{width:100%;height:auto;transition:transform .8s var(--ease)}
+.gal figure:hover img{transform:scale(1.04)}
+.gal figcaption{position:absolute;left:10px;bottom:10px;background:rgba(255,255,255,.94);border-radius:999px;padding:5px 12px;font-size:12.5px;font-weight:600;opacity:0;transform:translateY(6px);transition:all .35s var(--ease)}
+.gal figure:hover figcaption{opacity:1;transform:none}
+.lb{position:fixed;inset:0;z-index:90;background:rgba(9,18,36,.92);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;padding:24px}
+.lb.on{opacity:1;visibility:visible}
+.lb img{max-width:min(1200px,100%);max-height:84vh;border-radius:12px;transform:scale(.96);transition:transform .45s var(--ease)}
+.lb.on img{transform:none}
+.lb button{position:absolute;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;display:grid;place-items:center;transition:background .25s}
+.lb button:hover{background:rgba(255,255,255,.24)}
+.lb button svg{width:22px;height:22px}
+.lb .x{top:20px;right:20px}.lb .pv{left:20px;top:50%;margin-top:-26px}.lb .nx{right:20px;top:50%;margin-top:-26px}
+.lb .lbcap{position:absolute;bottom:22px;left:0;right:0;text-align:center;color:rgba(255,255,255,.8);font-size:14px}
+
+/* ---------- EQUIPE ---------- */
+.team{background:var(--cloud)}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.member{background:#fff;border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow)}
+.member .ph{aspect-ratio:1/1;overflow:hidden;background:var(--sky-tint)}
+.member .ph img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;transition:transform .8s var(--ease)}
+.member:hover .ph img{transform:scale(1.04)}
+.member .tx{padding:20px 22px 24px}
+.member .mono{display:grid;place-items:center;background:radial-gradient(circle at 50% 120%,var(--sun-tint) 0 38%,transparent 39%),linear-gradient(160deg,var(--sky-tint),#fff)}
+.member .mono span{font-family:'Fraunces';font-style:italic;font-size:96px;color:var(--sky);line-height:1}
+.member h3{font-size:19px}
+.member span{font-size:14.5px;color:var(--ink-3);display:block;margin-top:4px;line-height:1.4}
+
+/* ---------- SOUTENIR ---------- */
+.help-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:start}
+.ways{display:grid;gap:12px}
+.way{display:flex;gap:18px;align-items:flex-start;padding:22px 24px;border-radius:var(--r-md);box-shadow:inset 0 0 0 1.5px var(--line);cursor:pointer;transition:box-shadow .3s,background .3s,transform .35s var(--ease);text-align:left;width:100%}
+.way:hover{transform:translateX(4px)}
+.way .ic{flex:none;width:48px;height:48px;border-radius:14px;background:var(--cloud);display:grid;place-items:center;transition:background .3s}
+.way .ic svg{width:24px;height:24px;color:var(--sky)}
+.way h3{font-size:19px;margin-bottom:4px}
+.way p{font-size:15px;color:var(--ink-2)}
+.way.on{box-shadow:inset 0 0 0 2px var(--sky);background:#F7FBFF}
+.way.on .ic{background:var(--sky)}.way.on .ic svg{color:#fff}
+.form{background:var(--ink);color:#fff;border-radius:var(--r-lg);padding:38px}
+.form h3{font-size:28px;margin-bottom:8px}
+.form>p{color:rgba(255,255,255,.7);font-size:16px;margin-bottom:26px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:7px;color:rgba(255,255,255,.85)}
+.field input,.field select,.field textarea{width:100%;font:inherit;font-size:16px;color:#fff;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.14);border-radius:12px;padding:14px 16px;transition:border-color .25s,background .25s;outline:none}
+.field select option{color:var(--ink)}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--sun);background:rgba(255,255,255,.1)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .btn{width:100%;justify-content:center;margin-top:8px}
+.form .note{font-size:13px;color:rgba(255,255,255,.55);margin-top:14px;text-align:center}
+
+/* ---------- CONTACT / FOOTER ---------- */
+.contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.c-card{padding:26px 24px;border-radius:var(--r-md);background:var(--cloud);transition:transform .4s var(--ease),background .3s}
+a.c-card:hover{transform:translateY(-4px);background:var(--sky-tint)}
+.c-card .ic{width:44px;height:44px;border-radius:12px;background:#fff;display:grid;place-items:center;margin-bottom:22px}
+.c-card .ic svg{width:22px;height:22px;color:var(--sky)}
+.c-card small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--ink-3);margin-bottom:6px}
+.c-card b{font-size:16.5px;font-weight:600;line-height:1.4;display:block;word-break:break-word}
+footer{background:var(--ink);color:rgba(255,255,255,.7);padding:72px 0 36px;margin-top:0}
+.f-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.12)}
+.f-brand{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+.f-brand .lg{background:#fff;border-radius:18px;padding:10px 12px}
+.f-brand .lg img{height:62px;width:auto}
+.f-brand b{font-family:'Epilogue';color:#fff;font-size:22px;line-height:1.1}
+footer p{font-size:15px;max-width:380px}
+footer h4{color:#fff;font-size:15px;margin-bottom:14px;letter-spacing:.02em}
+footer ul{list-style:none;display:grid;gap:9px;font-size:15px}
+footer ul a:hover{color:#fff}
+.f-bot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:26px;font-size:13.5px}
+.f-law{margin-top:18px;font-size:13.5px;color:rgba(255,255,255,.55);max-width:380px}
+
+/* ---------- REVEAL ---------- */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.rv-img{clip-path:inset(12% 12% 12% 12% round var(--r-lg));transition:clip-path 1.3s var(--ease);transition-delay:var(--d,0s)}
+.rv-img.in{clip-path:inset(0 0 0 0 round var(--r-lg))}
+
+/* floating WhatsApp */
+.fab{position:fixed;right:20px;bottom:20px;z-index:40;display:flex;align-items:center;gap:10px;background:#fff;border-radius:999px;padding:8px 18px 8px 8px;box-shadow:0 12px 30px -10px rgba(14,30,58,.4);font-weight:600;font-size:15px;transform:translateY(120px);transition:transform .5s var(--ease)}
+.fab.show{transform:none}
+.fab i{width:40px;height:40px;border-radius:50%;background:#25D366;display:grid;place-items:center}
+.fab i svg{width:22px;height:22px;color:#fff}
+
+
+/* ---------- HERO CINÉMA ---------- */
+.cine{position:relative;min-height:100svh;display:flex;align-items:flex-end;color:#fff;overflow:hidden;background:#0b1830}
+.cine-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1.8s ease,transform 9s linear}
+.cine-slides img.on{opacity:1;transform:scale(1)}
+.cine-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,24,48,.78) 0%,rgba(11,24,48,.45) 45%,rgba(11,24,48,0) 75%),linear-gradient(180deg,rgba(11,24,48,.45) 0%,rgba(11,24,48,.1) 30%,rgba(11,24,48,.55) 62%,rgba(11,24,48,.92) 100%),radial-gradient(120% 70% at 85% 100%,rgba(242,183,5,.22),transparent 60%)}
+.dust{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.cine-in{position:relative;z-index:2;padding:0 0 110px}
+.cine h1{font-size:clamp(40px,5.6vw,80px);font-weight:800;letter-spacing:-.035em;max-width:980px;margin:20px 0 24px;text-shadow:0 2px 30px rgba(0,0,0,.25)}
+.cine h1 .accent{color:var(--sun)}
+.cine-lead{font-size:clamp(18px,1.6vw,21px);color:rgba(255,255,255,.88);max-width:620px}
+.eyebrow.light{color:#fff}
+.btn-glass{background:rgba(255,255,255,.14);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+.btn-glass:hover{background:rgba(255,255,255,.24)}
+.btn-glass .pl{width:28px;height:28px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;margin-left:-8px}
+.btn-glass .pl svg{width:12px;height:12px;margin-left:2px}
+.cine-dots{position:absolute;z-index:2;right:max(20px,calc((100vw - var(--wrap))/2));bottom:118px;display:flex;gap:8px}
+.cine-dots i{width:26px;height:3px;border-radius:3px;background:rgba(255,255,255,.35);transition:background .4s,width .4s}
+.cine-dots i.on{background:var(--sun);width:44px}
+.cine-scroll{position:absolute;z-index:2;left:50%;bottom:28px;width:26px;height:42px;margin-left:-13px;border-radius:14px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.6)}
+.cine-scroll span{position:absolute;left:50%;top:9px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:wheel 1.8s ease-in-out infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
+.facts{background:#fff;border-bottom:1px solid var(--line)}
+.facts-in{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;padding:34px 0}
+.facts-in div{font-size:14.5px;color:var(--ink-3);line-height:1.4}
+.facts-in strong{display:block;font-family:'Epilogue';font-size:24px;color:var(--ink);letter-spacing:-.01em;margin-bottom:2px}
+/* hero split + arche */
+.cine{align-items:center;background:radial-gradient(90% 80% at 80% 30%,#1c3563 0%,#0e1e3a 55%,#0a1630 100%)}
+.cine-glow{position:absolute;right:-10%;top:10%;width:70vw;height:70vw;max-width:900px;max-height:900px;border-radius:50%;background:radial-gradient(circle,rgba(242,183,5,.28),transparent 62%);filter:blur(10px);animation:glow 9s ease-in-out infinite}
+@keyframes glow{50%{transform:scale(1.08) translateY(-2%);opacity:.8}}
+.cine-in{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;padding:120px 0 90px}
+.cine-arch{position:relative;justify-self:center;width:min(100%,460px)}
+.arch-frame{position:relative;aspect-ratio:3/4.2;border-radius:999px 999px 28px 28px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);background:#0b1830}
+.arch-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 1.6s ease,transform 8s linear}
+.arch-frame img.on{opacity:1;transform:scale(1)}
+.arch-rays{position:absolute;left:-15%;width:130%;top:0;margin-top:-15%;overflow:visible}
+.arch-rays line{stroke:#F2B705;stroke-width:20;stroke-linecap:round;opacity:0;animation:rayIn .8s var(--ease) forwards}
+.cine .cine-dots{position:static;justify-content:center;margin-top:18px}
+.illu{position:absolute;right:14px;bottom:56px;font-size:11px;letter-spacing:.06em;color:rgba(255,255,255,.75);background:rgba(11,24,48,.45);padding:4px 10px;border-radius:999px;backdrop-filter:blur(6px)}
+.cine-shade{display:none}
+.cine-scroll{display:none}
+/* bande photos manifeste */
+.strip{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:18px;margin-top:70px;align-items:center}
+.strip figure{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:3/4;box-shadow:var(--shadow)}
+.strip figure:nth-child(2){aspect-ratio:3/3.6}
+.strip img{width:100%;height:100%;object-fit:cover;will-change:transform;transform:scale(1.1)}
+.illu-note{margin-top:12px;font-size:12px;color:var(--ink-3);text-align:right}
+/* ---------- MANIFESTE ---------- */
+.manif{background:var(--cloud);padding:140px 0}
+.manif-txt{font-family:'Epilogue';font-weight:700;font-size:clamp(30px,4.2vw,58px);line-height:1.16;letter-spacing:-.025em;max-width:1050px}
+.manif-txt em{font-family:'Fraunces';font-style:italic;font-weight:400;color:var(--sky)}
+.manif-txt .sw{color:rgba(14,30,58,.14);transition:color .4s ease}
+.manif-txt .sw.lit{color:var(--ink)}
+.manif-txt em .sw.lit{color:var(--sky)}
+/* ---------- LETTRE ---------- */
+.letter{margin:30px 0;padding:30px 30px 26px;background:var(--cloud);border-radius:var(--r-lg);position:relative}
+.letter::before{content:"“";position:absolute;top:-34px;left:22px;font-family:'Fraunces';font-size:120px;line-height:1;color:var(--sun)}
+.letter blockquote{font-family:'Fraunces';font-style:italic;font-size:18px;line-height:1.55;color:var(--ink-2);margin-bottom:16px}
+.letter blockquote.big{font-size:23px;color:var(--ink);line-height:1.4}
+.letter figcaption{font-size:13px;color:var(--ink-3);display:flex;align-items:baseline;gap:12px}
+.letter .sign{font-family:'Fraunces';font-style:italic;font-size:30px;color:var(--sky)}
+.pres h2{font-size:clamp(32px,3.8vw,50px)}
+/* ---------- MAISON verbes ---------- */
+.m-verbs{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.m-verbs li{padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);font-family:'Fraunces';font-style:italic;font-size:19px;color:#fff}
+.m-verbs li:nth-child(3n+1){color:var(--sun)}
+/* ---------- APPEL ---------- */
+.appeal{position:relative;color:#fff;overflow:hidden;padding:150px 0}
+.appeal-bg{position:absolute;inset:0}
+.appeal-bg img{width:100%;height:100%;object-fit:cover;filter:saturate(.8)}
+.appeal-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,24,48,.95) 0%,rgba(11,24,48,.82) 55%,rgba(11,24,48,.55) 100%)}
+.appeal-in{position:relative;max-width:var(--wrap)}
+.appeal-hard{max-width:560px;border-left:3px solid var(--sun);padding-left:22px;margin-bottom:46px}
+.appeal-hard p{font-family:'Fraunces';font-style:italic;font-size:22px;line-height:1.45;margin-top:10px;color:rgba(255,255,255,.92)}
+.appeal h2{font-size:clamp(40px,6vw,80px);font-weight:800;letter-spacing:-.035em;max-width:820px}
+.appeal h2 .accent{color:var(--sun)}
+.appeal-lead{font-size:19px;color:rgba(255,255,255,.82);max-width:640px;margin:22px 0 34px}
+.needs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:900px;margin-bottom:36px}
+.needs div{padding:18px;border-radius:var(--r-md);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(6px)}
+.needs b{display:block;font-family:'Epilogue';font-size:18px;color:var(--sun);margin-bottom:4px}
+.needs span{font-size:14px;color:rgba(255,255,255,.75)}
+@media (max-width:900px){
+  .facts-in{grid-template-columns:repeat(2,1fr);gap:20px}
+  .needs{grid-template-columns:repeat(2,1fr)}
+  .manif{padding:90px 0}.appeal{padding:100px 0}
+  .cine-in{padding-bottom:96px}.cine-dots{bottom:auto;top:100px}
+}
+@media (max-width:900px){.cine-in{grid-template-columns:1fr;gap:40px;padding:110px 0 60px}.cine-arch{width:78%;order:-1;margin-top:30px}.strip{grid-template-columns:1fr 1fr;gap:12px;margin-top:44px}.strip figure:nth-child(3){display:none}}
+@media (max-width:560px){.cine-arch{width:58%;margin-top:10px}.cine-in{padding-top:96px;gap:28px}.illu{bottom:46px;font-size:10px}.cine h1{font-size:38px;margin-top:14px}.letter{padding:26px 20px 20px}.letter blockquote.big{font-size:20px}}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1080px){
+  .menu a:not(.btn){display:none}
+  .axes-grid{grid-template-columns:repeat(2,1fr)}
+  .contact-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:900px){
+  body{font-size:16px}
+  .sec{padding:84px 0}
+  .menu{display:none}
+  .burger{display:grid}
+  .nav.open{background:#fff}
+  .nav.open .menu{display:flex;position:absolute;top:80px;left:0;right:0;flex-direction:column;align-items:stretch;background:#fff;padding:12px 20px 24px;box-shadow:0 20px 30px -20px rgba(14,30,58,.3)}
+  .nav.open .menu a:not(.btn){display:block;padding:14px 4px;font-size:18px;border-bottom:1px solid var(--line);border-radius:0}
+  .nav.open .menu .btn{margin:16px 0 0;justify-content:center}
+  .hero{padding:118px 0 60px}
+  .hero-grid,.mission-grid,.ap-wrap,.pres-grid,.help-grid{grid-template-columns:1fr;gap:44px}
+  .hero-visual{max-width:520px;width:100%;margin-inline:auto}
+  .mission-pics{max-width:520px}
+  .ap-panel{min-height:480px}
+  .pres-photo{max-width:440px;margin-inline:auto;width:100%}
+  .pres-sig{right:-8px}
+  .m-grid,.m-info,.team-grid{grid-template-columns:1fr}
+  .m-hero{aspect-ratio:4/3}
+  .stat-band{grid-template-columns:1fr;gap:12px;padding:28px}
+  .tl-line{left:10px}
+  .tl-item{grid-template-columns:1fr;gap:10px;padding:16px 0 16px 40px}
+  .tl-item .dot{left:10px;top:30px}
+  .tl-item:nth-child(n) .tl-card{grid-column:1;grid-row:2}
+  .tl-item:nth-child(n) .tl-side{grid-column:1;grid-row:1;justify-content:flex-start;text-align:left;padding-top:0;font-size:18px}
+  .f-top{grid-template-columns:1fr;gap:34px}
+  .row2{grid-template-columns:1fr}
+  .form{padding:28px 22px}
+}
+@media (max-width:560px){
+  .wrap{width:calc(100% - 32px)}
+  .axes-grid,.contact-grid{grid-template-columns:1fr}
+  .axe .ic{margin-bottom:28px}
+  .gal{columns:2;column-gap:10px}.gal figure{margin-bottom:10px}
+  .hv-chip{max-width:200px;padding:10px 12px}
+  .hv-chip i{width:34px;height:34px}
+  .hv-chip.top{display:none}
+  .hv-chip{right:-2%;bottom:6%}
+  .hero-meta{gap:20px}
+  .brand small{display:none}
+  .fab span{display:none}.fab{padding:8px;bottom:84px;right:16px}
+  .m-hero .tag{font-size:13px;padding:8px 14px}
+  .m-hero .cap{left:14px;bottom:14px}
+  .video-card .thumb{width:110px}
+  .mission-badge{width:108px;height:108px;font-size:13px}.mission-badge span{font-size:28px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .wr .w>span{transform:none}.rv{opacity:1;transform:none}.rv-img{clip-path:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="brand" aria-label="Association Bosungi, accueil">
+      <img src="__IMG_emblem__" alt="Logo de l'association Bosungi">
+      <div><b>Association Bosungi</b><small>Un espoir, un avenir</small></div>
+    </a>
+    <nav class="menu" id="menu" aria-label="Navigation principale">
+      <a href="#association">L'association</a>
+      <a href="#presidente">La présidente</a>
+      <a href="#maison">Maison d'accueil</a>
+      <a href="#actions">Nos actions</a>
+      <a href="#histoire">Notre histoire</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#soutenir" class="btn btn-sun">Nous soutenir</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+<!-- ===== HERO ===== -->
+<section class="cine" aria-label="Accueil">
+  <div class="cine-glow" aria-hidden="true"></div>
+  <canvas class="dust" id="dust" aria-hidden="true"></canvas>
+  <div class="cine-shade"></div>
+  <div class="wrap cine-in">
+   <div class="cine-txt">
+    <span class="eyebrow light rv">Association Bosungi · Kinshasa</span>
+    <h1 class="wr" data-wr>Chaque geste compte pour changer <span class="accent">la vie d'une fille.</span></h1>
+    <p class="cine-lead rv" style="--d:.6s">Elles ont entre 6 et 17 ans. Orphelines, seules, souvent livrées à la rue. À Kinshasa, Bosungi leur ouvre une maison, les protège et les ramène à l'école.</p>
+    <div class="hero-cta rv" style="--d:.75s">
+      <a href="#soutenir" class="btn btn-sun">Aider une jeune fille <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="#presidente" class="btn btn-glass"><span class="pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg></span>Le message d'Annie</a>
+    </div>
+   </div>
+   <div class="cine-arch rv" style="--d:.2s">
+     <svg class="arch-rays" viewBox="0 0 1300 700" aria-hidden="true"><g id="arch-rays"></g></svg>
+     <div class="arch-frame cine-slides">
+       <img class="on" src="__IMG_sourire__" alt="Une fillette sourit, ses cahiers serrés contre elle">
+       <img src="__IMG_ronde__" alt="Des enfants font une ronde sur un chemin de terre" loading="lazy">
+       <img src="__IMG_rires__" alt="Des enfants éclatent de rire" loading="lazy">
+     </div>
+     <span class="illu">Photos d'illustration</span>
+     <div class="cine-dots" id="cdots" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+   </div>
+  </div>
+  <a href="#manifeste" class="cine-scroll" aria-label="Faire défiler"><span></span></a>
+</section>
+
+<section class="facts" aria-label="L'association en bref">
+  <div class="wrap facts-in">
+    <div class="rv"><strong>35 filles</strong>accompagnées aujourd'hui</div>
+    <div class="rv"><strong>Depuis 2021</strong>aux côtés des jeunes filles de Kinshasa</div>
+    <div class="rv" style="--d:.08s"><strong>6 à 17 ans</strong>l'âge des enfants accompagnées</div>
+    <div class="rv" style="--d:.16s"><strong>2 sept. 2026</strong>ouverture de la maison d'accueil</div>
+    <div class="rv" style="--d:.24s"><strong>Kinshasa · Paris</strong>une équipe sur place, une présidente en France</div>
+  </div>
+</section>
+
+<section class="manif" id="manifeste">
+  <div class="wrap">
+    <p class="manif-txt" data-scrub>Certaines ont perdu leurs parents. D'autres passent leurs journées dans la rue, seules. Beaucoup ont connu les cris, les coups, ou pire. <em>Toutes ont le droit de redevenir des enfants.</em></p>
+    <div class="strip">
+      <figure class="rv" data-par="-6"><img src="__IMG_rires__" alt="Des enfants qui rient" loading="lazy"></figure>
+      <figure class="rv" style="--d:.1s" data-par="6"><img src="__IMG_mains__" alt="Des enfants joignent leurs mains autour d'un cœur en papier" loading="lazy"></figure>
+      <figure class="rv" style="--d:.2s" data-par="-3"><img src="__IMG_ronde__" alt="Une ronde d'enfants sur un chemin" loading="lazy"></figure>
+    </div>
+    <p class="illu-note">Photos d'illustration</p>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    <span>Éducation</span><span>Protection</span><span class="accent">Écoute</span><span>Dignité</span><span>Ensemble pour un avenir meilleur</span><span>Éducation</span><span>Protection</span><span class="accent">Écoute</span><span>Dignité</span><span>Ensemble pour un avenir meilleur</span>
+  </div>
+</div>
+
+<!-- ===== MISSION ===== -->
+<section class="sec" id="association">
+  <div class="wrap mission-grid">
+    <div class="mission-pics">
+      <figure class="mp1 rv-img"><img src="__IMG_annie_kits__" alt="Remise de cartables aux bénéficiaires" loading="lazy"></figure>
+      <figure class="mp2 rv-img" style="--d:.2s"><img src="__IMG_etude2__" alt="Séance d'encadrement scolaire à la maison d'accueil" loading="lazy"></figure>
+      <div class="mission-badge rv" style="--d:.4s"><div><span>2026</span>au cœur<br>de l'action</div></div>
+    </div>
+    <div class="mission-text">
+      <span class="eyebrow rv">L'association</span>
+      <h2 class="wr" data-wr>Nous sommes <span class="accent">au cœur</span> de l'action.</h2>
+      <p class="lede rv">Bosungi soutient les enfants et les adolescentes en situation de grande précarité, pour réduire les inégalités et prévenir les violences, notamment sexuelles.</p>
+      <p class="rv">Elle accompagne les jeunes filles qui en ont été victimes et les aide à se relever : un lieu sûr, une écoute, l'accès à l'école, des kits scolaires et d'hygiène, et des moments pour rire, jouer et redevenir des enfants.</p>
+      <p class="rv">Parce que chaque enfant, fille ou garçon, a les mêmes droits, peu importe d'où il vient, ce qu'il a vécu ou ce que fait sa famille.</p>
+      <div class="name-def rv"><b>Bosungi</b><p>En lingala, ce mot parle d'aide et de secours. C'est exactement ce que l'association veut être pour chaque jeune fille qu'elle accueille.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPROCHE ===== -->
+<section class="sec approach">
+  <div class="wrap ap-wrap">
+    <div>
+      <div class="sec-head" style="margin-bottom:28px">
+        <span class="eyebrow rv">Notre approche</span>
+        <h2 class="wr" data-wr>Prendre soin de <span class="accent">toute</span> la personne.</h2>
+        <p class="rv">Une jeune fille qui a subi des violences, verbales, physiques ou sexuelles, a besoin de bien plus qu'un repas. Nous l'accompagnons dans toutes les dimensions de sa vie.</p>
+      </div>
+      <div class="ap-tabs" role="tablist" aria-label="Notre approche">
+        <button class="ap-tab rv" role="tab" aria-selected="true" aria-controls="ap1" id="t1"><span class="n">1</span><div><h3>Accueillir et protéger</h3><p>Un lieu sûr, des adultes de confiance</p></div></button>
+        <button class="ap-tab rv" role="tab" aria-selected="false" aria-controls="ap2" id="t2" style="--d:.08s"><span class="n">2</span><div><h3>Écouter et reconstruire</h3><p>Retrouver l'estime de soi</p></div></button>
+        <button class="ap-tab rv" role="tab" aria-selected="false" aria-controls="ap3" id="t3" style="--d:.16s"><span class="n">3</span><div><h3>Scolariser et former</h3><p>L'école, c'est l'avenir</p></div></button>
+        <button class="ap-tab rv" role="tab" aria-selected="false" aria-controls="ap4" id="t4" style="--d:.24s"><span class="n">4</span><div><h3>Sensibiliser aux droits</h3><p>Connaître, se protéger et grandir</p></div></button>
+      </div>
+      <div class="mukwege rv"><figure class="mk-ph"><img src="__IMG_mukwege__" alt="Annie Kiamuangana-Boloko avec le Dr Denis Mukwege, prix Nobel de la paix" loading="lazy"><figcaption>Annie avec le Dr Denis Mukwege</figcaption></figure><p>Notre accompagnement s'inspire de la <b>prise en charge holistique du Dr Denis Mukwege</b>, prix Nobel de la paix 2018 : soigner, écouter, rendre l'autonomie et faire valoir ses droits.</p></div>
+    </div>
+    <div class="ap-panel rv">
+      <div class="ap-pane on" id="ap1" role="tabpanel" aria-labelledby="t1"><div class="ph"><img src="__IMG_annie_fille__" alt="La présidente et une bénéficiaire lors d'une remise de kits" loading="lazy"></div><div class="tx"><h4>Accueillir et protéger</h4><p>Notre maison d'accueil offre aux jeunes filles un cadre sûr et bienveillant. Chacune y est accueillie par son prénom, sans jugement.</p></div></div>
+      <div class="ap-pane" id="ap2" role="tabpanel" aria-labelledby="t2"><div class="ph"><img src="__IMG_lecture__" alt="Une adulte lit un livre avec deux enfants" loading="lazy"></div><div class="tx"><h4>Écouter et reconstruire</h4><p>La violence laisse des traces invisibles. Moments de partage, jeux, ateliers : nous aidons chaque jeune fille à retrouver confiance en elle et dans les autres.</p></div></div>
+      <div class="ap-pane" id="ap3" role="tabpanel" aria-labelledby="t3"><div class="ph"><img src="__IMG_ecriture__" alt="Une écolière écrit en souriant" loading="lazy" style="object-position:50% 30%"></div><div class="tx"><h4>Scolariser et former</h4><p>Fournitures, cartables, suivi des devoirs : l'éducation est notre première cible. C'est la clé pour offrir un avenir et lutter contre l'exclusion.</p></div></div>
+      <div class="ap-pane" id="ap4" role="tabpanel" aria-labelledby="t4"><div class="ph"><img src="__IMG_parole2__" alt="Atelier de sensibilisation animé par l'association" loading="lazy"></div><div class="tx"><h4>Sensibiliser aux droits</h4><p>Ateliers et causeries sur la santé, la prévention des violences et les droits de l'enfant, pour que chaque jeune fille sache se protéger.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRESIDENTE ===== -->
+<section class="sec pres" id="presidente">
+  <div class="wrap pres-grid">
+    <div class="pres-photo rv">
+      <svg class="halo" viewBox="0 0 1300 700" aria-hidden="true"><g id="halo-rays"></g></svg>
+      <div class="frame"><img src="__IMG_annie_pro__" alt="Portrait d'Annie Kiamuangana-Boloko, présidente de l'association Bosungi" loading="lazy"></div>
+      <div class="pres-sig"><b>Annie Kiamuangana-Boloko</b><span>Fondatrice et présidente</span></div>
+    </div>
+    <div>
+      <span class="eyebrow rv">Pourquoi Bosungi existe</span>
+      <h2 class="wr" data-wr>« C'est l'amour que j'ai pour <span class="accent">ces enfants.</span> »</h2>
+      <div class="role rv">Annie · infirmière, maman de quatre enfants</div>
+      <p class="rv">En région parisienne, Annie est <b>infirmière coordinatrice de parcours de santé</b>. Chaque jour, elle accompagne des patients en grande précarité et des femmes victimes de violences.</p>
+      <p class="rv">À Kinshasa, elle a vu des fillettes abandonnées, laissées seules, passer leurs journées dans la rue. Elle n'a pas pu détourner le regard. En 2021, elle crée Bosungi dans un petit local. Cinq ans plus tard, les jeunes filles ont une maison.</p>
+      <figure class="letter rv">
+        <blockquote>« Le constat, c'est de voir autour de nous, à Kinshasa, des enfants, des jeunes filles en situation de grande précarité, abandonnées, laissées seules ou dans la rue. C'est ça qui m'a vraiment motivée à créer cette association. »</blockquote>
+        <blockquote class="big">« La conviction, au plus profond de moi, que chaque geste et chaque action comptent pour améliorer la vie d'une fille. »</blockquote>
+        <figcaption><span class="sign">Annie</span>Extrait de son entretien vidéo</figcaption>
+      </figure>
+      <a class="video-card rv" href="https://www.facebook.com/reel/1614487700092891" target="_blank" rel="noopener">
+        <div class="thumb"><img src="__IMG_interview__" alt="" loading="lazy"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4v16l13-8z"/></svg></span></div>
+        <div><b>Regarder l'entretien d'Annie</b><span>Elle raconte son histoire et celle de l'association · 5 min 31</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAISON ===== -->
+<section class="sec maison" id="maison">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">La maison d'accueil</span>
+      <h2 class="wr" data-wr>C'est officiel : <span class="accent">on a ouvert !</span></h2>
+      <p class="rv">Le mercredi 2 septembre 2026, les jeunes filles qui passaient leurs journées dans la rue ont enfin eu un endroit à elles. Une maison où l'on peut :</p>
+      <ul class="m-verbs rv"><li>se reposer</li><li>manger</li><li>être écoutée</li><li>apprendre</li><li>jouer</li><li>rêver</li></ul>
+    </div>
+    <div class="m-hero rv-img"><img src="__IMG_maison__" alt="La maison d'accueil Bosungi, façade bleue, des enfants jouent dans la cour" id="parallax">
+      <div class="cap"><span class="tag"><i></i>Ouverte depuis le 2 septembre 2026</span></div>
+    </div>
+    <div class="m-grid">
+      <article class="m-card rv"><div class="ph"><img src="__IMG_etude1__" alt="Deux jeunes filles font leurs devoirs" loading="lazy"></div><div class="tx"><h3>Encadrement scolaire</h3><p>Des séances d'encadrement pour suivre les devoirs et viser un parcours d'excellence.</p></div></article>
+      <article class="m-card rv" style="--d:.1s"><div class="ph"><img src="__IMG_kits2026__" alt="Distribution de cartables" loading="lazy"></div><div class="tx"><h3>Kits scolaires et d'hygiène</h3><p>Le 16 août 2026, lors de la cérémonie d'ouverture, chaque bénéficiaire a reçu son kit.</p></div></article>
+      <article class="m-card rv" style="--d:.2s"><div class="ph"><img src="__IMG_salle__" alt="Une bénévole accompagne des jeunes filles" loading="lazy"></div><div class="tx"><h3>Des bénévoles présents</h3><p>Une équipe de bénévoles accueille et accompagne les jeunes filles au quotidien.</p></div></article>
+    </div>
+    <div class="m-info">
+      <div class="rv"><small>Adresse</small><b>5B, 1ère rue, quartier Kimbangu, commune de Kalamu, Kinshasa</b></div>
+      <div class="rv" style="--d:.1s"><small>Pour qui</small><b>Les orphelines et les jeunes filles vulnérables</b></div>
+      <div class="rv" style="--d:.2s"><small>Notre devise</small><b>Un espoir, un avenir</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AXES ===== -->
+<section class="sec" id="actions">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">Nos actions</span>
+      <h2 class="wr" data-wr>Quatre axes pour <span class="accent">grandir</span> en confiance.</h2>
+      <p class="rv">L'éducation est la clé pour offrir des perspectives d'avenir aux enfants, mais aussi pour lutter contre la maltraitance, la violence et l'exclusion sociale.</p>
+    </div>
+    <div class="axes-grid">
+      <article class="axe rv"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M12 2v1M12 13v1M5 8H4M20 8h-1M7 3.5l.7.7M16.3 12.3l.7.7M7 12.5l.7-.7M16.3 3.7l.7-.7"/><path d="M6 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div><h3>L'éveil précoce</h3><p>Accompagner les plus jeunes dès les premières années, pour bien démarrer dans la vie.</p></article>
+      <article class="axe rv" style="--d:.08s"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10l10-6 10 6-10 6z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div><h3>La scolarisation</h3><p>Fournitures, cartables et encadrement pour que chaque fille aille à l'école et y réussisse.</p></article>
+      <article class="axe rv" style="--d:.16s"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg></div><h3>La formation professionnelle</h3><p>Apprendre un métier pour devenir autonome et construire sa propre vie.</p></article>
+      <article class="axe rv" style="--d:.24s"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>La sensibilisation aux droits</h3><p>Connaître ses droits pour se protéger, et apprendre à accueillir et respecter l'autre.</p></article>
+    </div>
+    <div class="stat-band rv">
+      <div class="big"><span data-count="124">124</span><small>millions</small></div>
+      <p>d'enfants de 6 à 15 ans dans le monde ne sont <b>jamais allés à l'école</b>. Travail pour survivre, handicap, ou simplement parce que ce sont des filles. Bosungi agit pour que les jeunes filles de Kinshasa n'en fassent pas partie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HISTOIRE ===== -->
+<section class="sec" id="histoire" style="background:linear-gradient(180deg,#fff 0%,var(--cloud) 100%)">
+  <div class="wrap">
+    <div class="sec-head" style="margin-inline:auto;text-align:center">
+      <span class="eyebrow rv">Notre histoire</span>
+      <h2 class="wr" data-wr>Cinq ans d'actions, <span class="accent">pas à pas.</span></h2>
+    </div>
+    <div class="tl" id="tl">
+      <div class="tl-line"><div class="tl-fill" id="tlfill"></div></div>
+      <div class="tl-item"><span class="dot"></span><div class="tl-card rv"><div class="ph"><img src="__IMG_etude3__" alt="Une jeune fille fait ses devoirs" loading="lazy"></div><div class="tx"><div class="tl-date">2021</div><h3>Tout commence dans un petit local</h3><p>Annie crée Bosungi pour les orphelines et les jeunes filles en grande précarité. Premiers ateliers, premiers accompagnements scolaires.</p></div></div><div class="tl-side">« On a commencé dans un bureau, dans un petit local. »</div></div>
+      <div class="tl-item"><span class="dot"></span><div class="tl-card rv"><div class="ph"><img src="__IMG_hygiene__" alt="Premières actions de l'association" loading="lazy"></div><div class="tx"><div class="tl-date">Mai 2023</div><h3>Sur le terrain, à Makala</h3><p>Action à l'orphelinat Maman Kulutu, à Makala : une causerie sur la prostitution des mineures, ses causes et ses conséquences.</p></div></div><div class="tl-side">« Ces enfants ont besoin de toi, moi, nous. »</div></div>
+      <div class="tl-item"><span class="dot"></span><div class="tl-card rv"><div class="ph"><img src="__IMG_rentree2__" alt="Remise des fournitures scolaires, rentrée 2023" loading="lazy"></div><div class="tx"><div class="tl-date">2 septembre 2023</div><h3>Rentrée scolaire et ouverture du siège</h3><p>Remise des fournitures et kits scolaires pour la rentrée 2023-2024, et ouverture officielle du siège au Veve-Center, à Kasavubu.</p></div></div><div class="tl-side">#EnsembleNousPouvons</div></div>
+      <div class="tl-item"><span class="dot"></span><div class="tl-card rv"><div class="ph"><img src="__IMG_rentree4__" alt="Les bénéficiaires réunies" loading="lazy"></div><div class="tx"><div class="tl-date">20 novembre 2023</div><h3>Journée mondiale de l'enfance</h3><p>Un message simple : nos enfants ont des droits qui doivent être respectés.</p></div></div><div class="tl-side">Les droits de l'enfant, chaque jour.</div></div>
+      <div class="tl-item"><span class="dot"></span><div class="tl-card rv"><div class="ph"><img src="__IMG_remise__" alt="Journée de remise de kits aux bénéficiaires" loading="lazy"></div><div class="tx"><div class="tl-date">Février 2025</div><h3>Une grande journée avec nos bénéficiaires</h3><p>Kits d'hygiène, chaussures, sacs, repas partagé : une journée entière pour les jeunes filles et leurs familles.</p></div></div><div class="tl-side">« Nos enfants, nos bénéficiaires. »</div></div>
+      <div class="tl-item"><span class="dot"></span><div class="tl-card rv"><div class="ph"><img src="__IMG_parole1__" alt="Atelier de sensibilisation" loading="lazy"></div><div class="tx"><div class="tl-date">Mars 2025</div><h3>Atelier « Connaître, se protéger et grandir »</h3><p>Avec Plamedie Exaucia Kapalala, cheffe de projet sensibilisation, et Christian Kabamba, président de la structure de danse et de théâtre ORA.</p></div></div><div class="tl-side">Connaître, se protéger et grandir.</div></div>
+      <div class="tl-item"><span class="dot"></span><div class="tl-card rv"><div class="ph"><img src="__IMG_kits2__" alt="Préparation des kits" loading="lazy"></div><div class="tx"><div class="tl-date">16 août 2026</div><h3>Cérémonie d'ouverture</h3><p>Distribution des kits scolaires et d'hygiène aux bénéficiaires, lors de la cérémonie d'ouverture de la maison d'accueil.</p></div></div><div class="tl-side">Un espoir, un avenir.</div></div>
+      <div class="tl-item"><span class="dot"></span><div class="tl-card rv"><div class="ph"><img src="__IMG_groupe2__" alt="Les jeunes filles devant la maison d'accueil" loading="lazy"></div><div class="tx"><div class="tl-date">2 septembre 2026</div><h3>La maison d'accueil ouvre ses portes</h3><p>Un lieu à elles, à Kalamu, avec des séances d'encadrement scolaire dès la première semaine.</p></div></div><div class="tl-side">« C'est officiel… on a ouvert ! »</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALERIE ===== -->
+<section class="sec" id="galerie">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">Galerie</span>
+      <h2 class="wr" data-wr>Des moments <span class="accent">qui restent.</span></h2>
+    </div>
+    <div class="gal-bar rv" role="group" aria-label="Filtrer les photos">
+      <button class="on" data-f="all">Toutes</button>
+      <button data-f="maison">Maison d'accueil</button>
+      <button data-f="ecole">École</button>
+      <button data-f="events">Journées et ateliers</button>
+    </div>
+    <div class="gal" id="gal">
+      <figure data-c="maison"><img src="__IMG_maison__" alt="La maison d'accueil" loading="lazy"><figcaption>La maison d'accueil</figcaption></figure>
+      <figure data-c="ecole"><img src="__IMG_etude3__" alt="Devoirs à la maison d'accueil" loading="lazy"><figcaption>Les devoirs</figcaption></figure>
+      <figure data-c="events"><img src="__IMG_annie_fille2__" alt="Remise de kits" loading="lazy"><figcaption>Remise de kits, 2025</figcaption></figure>
+      <figure data-c="maison"><img src="__IMG_groupe__" alt="Les bénéficiaires devant la maison d'accueil" loading="lazy"><figcaption>Nos bénéficiaires</figcaption></figure>
+      <figure data-c="ecole"><img src="__IMG_rentree1__" alt="Rentrée 2023" loading="lazy"><figcaption>Rentrée 2023</figcaption></figure>
+      <figure data-c="events"><img src="__IMG_assemblee__" alt="Journée avec les familles" loading="lazy"><figcaption>Journée avec les familles</figcaption></figure>
+      <figure data-c="ecole"><img src="__IMG_encadrement__" alt="Séance d'encadrement" loading="lazy"><figcaption>Séance d'encadrement</figcaption></figure>
+      <figure data-c="events"><img src="__IMG_chaussures__" alt="Chaussures offertes" loading="lazy"><figcaption>Chaussures offertes</figcaption></figure>
+      <figure data-c="maison"><img src="__IMG_annie_kits__" alt="Distribution de cartables à la maison d'accueil" loading="lazy"><figcaption>Distribution de cartables</figcaption></figure>
+      <figure data-c="ecole"><img src="__IMG_rentree3__" alt="Les bénéficiaires et leurs cartables" loading="lazy"><figcaption>Prêtes pour l'école</figcaption></figure>
+      <figure data-c="events"><img src="__IMG_atelier__" alt="Affiche de l'atelier Connaître, se protéger et grandir" loading="lazy"><figcaption>Atelier, mars 2025</figcaption></figure>
+      <figure data-c="ecole"><img src="__IMG_rentree5__" alt="Remise de fournitures" loading="lazy"><figcaption>Remise de fournitures</figcaption></figure>
+      <figure data-c="events"><img src="__IMG_table__" alt="Repas partagé" loading="lazy"><figcaption>Repas partagé</figcaption></figure>
+      <figure data-c="ecole"><img src="__IMG_trio2023__" alt="Cahiers et fournitures" loading="lazy"><figcaption>Cahiers et fournitures</figcaption></figure>
+      <figure data-c="ecole"><img src="__IMG_enfants2023__" alt="Remise des sacs" loading="lazy"><figcaption>Remise des sacs</figcaption></figure>
+      <figure data-c="maison"><img src="__IMG_etude2__" alt="Salle d'étude" loading="lazy"><figcaption>La salle d'étude</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EQUIPE ===== -->
+<section class="sec team">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow rv">L'équipe</span>
+      <h2 class="wr" data-wr>Des femmes et des hommes <span class="accent">engagés.</span></h2>
+    </div>
+    <div class="team-grid">
+      <article class="member rv"><div class="ph"><img src="__IMG_annie_portrait__" alt="Annie Kiamuangana-Boloko" loading="lazy"></div><div class="tx"><h3>Annie Kiamuangana-Boloko</h3><span>Présidente</span></div></article>
+      <article class="member rv" style="--d:.1s"><div class="ph mono"><span>PK</span></div><div class="tx"><h3>Plamedie Exaucia Kapalala</h3><span>Cheffe de projet sensibilisation, prévention et communication</span></div></article>
+      <article class="member rv" style="--d:.2s"><div class="ph"><img src="__IMG_rentree5__" alt="Les bénévoles de l'association" loading="lazy"></div><div class="tx"><h3>Nos bénévoles</h3><span>À Kinshasa, ils accueillent, encadrent et accompagnent les jeunes filles chaque semaine</span></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPEL ===== -->
+<section class="appeal">
+  <div class="appeal-bg" aria-hidden="true"><img src="__IMG_hero4__" alt=""></div>
+  <div class="wrap appeal-in">
+    <div class="appeal-hard rv">
+      <span class="eyebrow light">Le plus difficile</span>
+      <p>« C'est toujours un moment de tristesse, lorsque nous voyons des filles qui viennent et que nous n'avons pas les moyens nécessaires pour les accompagner. »</p>
+    </div>
+    <h2 class="wr" data-wr>Ne passez pas <span class="accent">votre chemin.</span></h2>
+    <p class="appeal-lead rv">Dans son entretien, Annie rappelle l'histoire du Bon Samaritain : d'autres ont vu l'homme blessé et sont passés. Lui s'est arrêté. Ces filles doivent manger, aller à l'école, être propres. Les moyens de l'association sont limités.</p>
+    <div class="needs rv">
+      <div><b>Manger</b><span>des repas à la maison d'accueil</span></div>
+      <div><b>Aller à l'école</b><span>fournitures, cartables, encadrement</span></div>
+      <div><b>Être propre</b><span>kits d'hygiène</span></div>
+      <div><b>Être écoutée</b><span>accompagnement et ateliers</span></div>
+    </div>
+    <a href="#soutenir" class="btn btn-sun rv">Je m'arrête, j'aide <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<!-- ===== SOUTENIR ===== -->
+<section class="sec" id="soutenir">
+  <div class="wrap help-grid">
+    <div>
+      <div class="sec-head" style="margin-bottom:30px">
+        <span class="eyebrow rv">Nous soutenir</span>
+        <h2 class="wr" data-wr>Arrêtez-vous, <span class="accent">donnez.</span></h2>
+        <p class="rv">Chaque geste compte : un cartable, une heure de votre temps, un partenariat. Choisissez comment vous souhaitez aider.</p>
+      </div>
+      <div class="ways" id="ways">
+        <button class="way on rv" data-w="Faire un don"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></span><div><h3>Faire un don</h3><p>Pour faire vivre la maison d'accueil et l'encadrement scolaire.</p></div></button>
+        <button class="way rv" data-w="Offrir des kits scolaires ou d'hygiène" style="--d:.06s"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8V6a6 6 0 0 1 12 0v2"/><rect x="4" y="8" width="16" height="13" rx="3"/><path d="M9 13h6"/></svg></span><div><h3>Offrir des kits</h3><p>Fournitures, cartables, produits d'hygiène, chaussures.</p></div></button>
+        <button class="way rv" data-w="Devenir bénévole ou membre actif" style="--d:.12s"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-1a7 7 0 0 1 14 0v1M19 8v6M16 11h6"/></svg></span><div><h3>Devenir bénévole</h3><p>À Kinshasa ou à distance, rejoignez l'équipe.</p></div></button>
+        <button class="way rv" data-w="Devenir partenaire" style="--d:.18s"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l2 2a1 1 0 0 0 3-3"/><path d="M14 14l2.5 2.5a1 1 0 0 0 3-3l-3.9-3.9a2 2 0 0 0-2.8 0l-.9.9a1 1 0 0 1-3-3l2.8-2.8a5 5 0 0 1 5.6-.9l.4.2a3 3 0 0 0 2.3.1L21 4"/><path d="M3 4l1 .4a3 3 0 0 0 2.3-.1l2.2-1a2 2 0 0 1 2 .2M3 13l6 6"/></svg></span><div><h3>Devenir partenaire</h3><p>Entreprises, écoles, associations : construisons ensemble.</p></div></button>
+      </div>
+    </div>
+    <form class="form rv" id="form" novalidate>
+      <h3>Écrivez-nous</h3>
+      <p>Votre message arrive directement sur le WhatsApp de l'association.</p>
+      <div class="field"><label for="f-way">Je souhaite</label><select id="f-way"><option>Faire un don</option><option>Offrir des kits scolaires ou d'hygiène</option><option>Devenir bénévole ou membre actif</option><option>Devenir partenaire</option><option>Autre demande</option></select></div>
+      <div class="row2">
+        <div class="field"><label for="f-name">Prénom et nom</label><input id="f-name" autocomplete="name" required></div>
+        <div class="field"><label for="f-city">Ville / pays</label><input id="f-city" autocomplete="address-level2" placeholder="Kinshasa, Paris…"></div>
+      </div>
+      <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" placeholder="Bonjour, je souhaite aider l'association…"></textarea></div>
+      <button class="btn btn-sun" type="submit">Envoyer sur WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="note">Ou par e-mail : contact.bosungi@gmail.com</p>
+    </form>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="sec" style="padding-top:0" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <a class="c-card rv" href="https://www.google.com/maps/search/?api=1&query=Kimbangu%2C%20Kalamu%2C%20Kinshasa" target="_blank" rel="noopener"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div><small>Adresse</small><b>5B, 1ère rue, Kimbangu, Kalamu, Kinshasa</b></a>
+      <a class="c-card rv" style="--d:.06s" href="https://wa.me/33617274106" target="_blank" rel="noopener"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-13.4 7.9L3 21l1.2-4.4A9 9 0 1 1 21 12z"/></svg></div><small>WhatsApp</small><b>+33 6 17 27 41 06</b></a>
+      <a class="c-card rv" style="--d:.12s" href="mailto:contact.bosungi@gmail.com"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><small>E-mail</small><b>contact.bosungi@gmail.com</b></a>
+      <a class="c-card rv" style="--d:.18s" href="https://www.facebook.com/profile.php?id=100092681236040" target="_blank" rel="noopener"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v7h4v-7h3l1-4h-4V8z"/></svg></div><small>Facebook</small><b>Association Bosungi</b></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div>
+        <div class="f-brand"><span class="lg"><img src="__IMG_logo__" alt="Logo Bosungi"></span><b>Association<br>Bosungi</b></div>
+        <p>Soutien et accompagnement des orphelines et des jeunes filles vulnérables. Organisme sans but lucratif, Kinshasa, République démocratique du Congo.</p>
+        <p class="f-law">Nous agissons dans l'esprit de la loi n° 09/001 du 10 janvier 2009 portant protection de l'enfant en RDC.</p>
+      </div>
+      <div><h4>L'association</h4><ul><li><a href="#association">Qui sommes-nous</a></li><li><a href="#presidente">La présidente</a></li><li><a href="constat.html">Le constat</a></li><li><a href="#maison">La maison d'accueil</a></li><li><a href="#actions">Nos actions</a></li><li><a href="transparence.html">Transparence</a></li></ul></div>
+      <div><h4>Agir</h4><ul><li><a href="#soutenir">Faire un don</a></li><li><a href="#soutenir">Devenir bénévole</a></li><li><a href="partenaires.html">Devenir partenaire</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    </div>
+    <div class="f-bot"><span>© 2026 Association Bosungi · Un espoir, un avenir</span><span>Photos : Association Bosungi</span></div>
+  </div>
+</footer>
+
+<a class="fab" id="fab" href="https://wa.me/33617274106" target="_blank" rel="noopener" aria-label="Écrire à l'association sur WhatsApp"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-13.4 7.9L3 21l1.2-4.4A9 9 0 1 1 21 12z"/></svg></i><span>Nous écrire</span></a>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo agrandie">
+  <button class="x" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="pv" aria-label="Photo précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <img alt="">
+  <button class="nx" aria-label="Photo suivante"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+  <div class="lbcap"></div>
+</div>
+
+<script>
+(()=>{
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+// sun rays (hero + halo), drawn like the logo
+function rays(g,cx,cy,r1,r2,n,delay){
+  const ns='http://www.w3.org/2000/svg';
+  for(let i=0;i<n;i++){
+    const a=Math.PI+(Math.PI*(i+.5)/n);
+    const l=document.createElementNS(ns,'line');
+    l.setAttribute('x1',cx+Math.cos(a)*r1);l.setAttribute('y1',cy+Math.sin(a)*r1);
+    l.setAttribute('x2',cx+Math.cos(a)*r2);l.setAttribute('y2',cy+Math.sin(a)*r2);
+    l.setAttribute('class','ray');l.style.animationDelay=(delay+i*.06)+'s';
+    l.style.transformOrigin=cx+'px '+cy+'px';
+    g.appendChild(l);
+  }
+}
+if(document.getElementById('rays'))rays(document.getElementById('rays'),250,250,198,232,11,1.0);
+const hr=document.getElementById('halo-rays');
+if(hr){const ns='http://www.w3.org/2000/svg';for(let i=0;i<11;i++){const a=Math.PI+(Math.PI*(i+.5)/11);const l=document.createElementNS(ns,'line');l.setAttribute('x1',650+Math.cos(a)*548);l.setAttribute('y1',650+Math.sin(a)*548);l.setAttribute('x2',650+Math.cos(a)*612);l.setAttribute('y2',650+Math.sin(a)*612);l.setAttribute('stroke','#F2B705');l.setAttribute('stroke-width','20');l.setAttribute('stroke-linecap','round');hr.appendChild(l);}}
+
+// word reveal split
+document.querySelectorAll('[data-wr]').forEach(el=>{
+  let i=0;
+  const walk=node=>{
+    [...node.childNodes].forEach(n=>{
+      if(n.nodeType===3){
+        const frag=document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(p=>{
+          if(!p)return;
+          if(/^\s+$/.test(p)){frag.appendChild(document.createTextNode(' '));return}
+          const w=document.createElement('span');w.className='w';
+          const s=document.createElement('span');s.textContent=p;s.style.setProperty('--i',i++);
+          w.appendChild(s);frag.appendChild(w);
+        });
+        n.replaceWith(frag);
+      }else if(n.nodeType===1)walk(n);
+    });
+  };
+  walk(el);el.classList.add('wr');
+});
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rv,.rv-img,.wr').forEach(el=>io.observe(el));
+// hero title immediately
+requestAnimationFrame(()=>document.querySelector('.cine .wr, .phero .wr')?.classList.add('in'));
+
+// nav
+const nav=document.getElementById('nav'),burger=document.getElementById('burger'),fab=document.getElementById('fab');
+const onScroll=()=>{const y=scrollY;nav.classList.toggle('scrolled',y>20);fab.classList.toggle('show',y>600);tl();par();};
+burger.addEventListener('click',()=>{const o=nav.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+document.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');burger.setAttribute('aria-expanded',false)}));
+
+// approach tabs (auto-rotate until user clicks)
+const tabs=[...document.querySelectorAll('.ap-tab')];let auto=true,cur=0;
+const show=k=>{cur=k;tabs.forEach((t,j)=>{t.setAttribute('aria-selected',j===k);document.getElementById(t.getAttribute('aria-controls')).classList.toggle('on',j===k)})};
+tabs.forEach((t,k)=>{t.addEventListener('click',()=>{auto=false;show(k)});t.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();tabs[(k+1)%4].focus();auto=false;show((k+1)%4)}if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();tabs[(k+3)%4].focus();auto=false;show((k+3)%4)}})});
+const apObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&!RM&&!window._apT){window._apT=setInterval(()=>{if(auto)show((cur+1)%4)},4200)}})},{threshold:.4});
+if(document.querySelector('.ap-panel'))apObs.observe(document.querySelector('.ap-panel'));
+
+// counter
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,end=+el.dataset.count;let t0=null;const step=t=>{t0??=t;const p=Math.min((t-t0)/1600,1);el.textContent=Math.round(end*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)};RM?el.textContent=end:requestAnimationFrame(step);setTimeout(()=>{el.textContent=end},1900);cio.unobserve(el)}),{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// timeline progress
+const tlEl=document.getElementById('tl'),fill=document.getElementById('tlfill'),items=[...document.querySelectorAll('.tl-item')];
+function tl(){if(!tlEl)return;const r=tlEl.getBoundingClientRect(),vh=innerHeight;const p=Math.min(Math.max((vh*.6-r.top)/r.height,0),1);fill.style.height=(p*100)+'%';items.forEach(it=>{const d=it.querySelector('.dot').getBoundingClientRect().top;it.classList.toggle('lit',d<vh*.6)})}
+// parallax maison
+const px=document.getElementById('parallax');
+function par(){if(!px||RM||innerWidth<700)return;const r=px.parentElement.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;const p=(r.top+r.height/2-innerHeight/2)/innerHeight;px.style.transform=`translateY(${-8+p*-8}%)`}
+let tk=false;addEventListener('scroll',()=>{if(!tk){requestAnimationFrame(()=>{onScroll();tk=false});tk=true}},{passive:true});onScroll();
+
+
+// hero slideshow
+const ar=document.getElementById('arch-rays');if(ar){const ns='http://www.w3.org/2000/svg';for(let i=0;i<11;i++){const a=Math.PI+(Math.PI*(i+.5)/11);const l=document.createElementNS(ns,'line');l.setAttribute('x1',650+Math.cos(a)*548);l.setAttribute('y1',650+Math.sin(a)*548);l.setAttribute('x2',650+Math.cos(a)*612);l.setAttribute('y2',650+Math.sin(a)*612);l.style.animationDelay=(.5+i*.07)+'s';ar.appendChild(l)}}
+document.querySelectorAll('.phero-rays').forEach(g=>{const ns='http://www.w3.org/2000/svg';for(let i=0;i<11;i++){const a=Math.PI+(Math.PI*(i+.5)/11);const l=document.createElementNS(ns,'line');l.setAttribute('x1',650+Math.cos(a)*548);l.setAttribute('y1',650+Math.sin(a)*548);l.setAttribute('x2',650+Math.cos(a)*612);l.setAttribute('y2',650+Math.sin(a)*612);l.style.animationDelay=(.3+i*.06)+'s';g.appendChild(l)}});
+const sl=[...document.querySelectorAll('.cine-slides img')],dots=[...document.querySelectorAll('#cdots i')];let si=0;
+if(!RM&&sl.length)setInterval(()=>{sl[si].classList.remove('on');dots[si].classList.remove('on');si=(si+1)%sl.length;sl[si].classList.add('on');dots[si].classList.add('on')},6000);
+// strip parallax
+const pfs=[...document.querySelectorAll('[data-par] img')];if(!RM&&pfs.length){const pp=()=>pfs.forEach(im=>{const r=im.parentElement.getBoundingClientRect();if(r.bottom<0||r.top>innerHeight)return;const k=+im.parentElement.dataset.par;const p=(r.top+r.height/2-innerHeight/2)/innerHeight;im.style.transform=`scale(1.1) translateY(${p*k}%)`});addEventListener('scroll',pp,{passive:true});pp()}
+// golden dust
+const cv=document.getElementById('dust');
+if(cv&&!RM){const cx=cv.getContext('2d');let W,H,P=[];const n=innerWidth<700?22:48;
+const rs=()=>{W=cv.width=cv.offsetWidth*devicePixelRatio;H=cv.height=cv.offsetHeight*devicePixelRatio};rs();addEventListener('resize',rs);
+for(let i=0;i<n;i++)P.push({x:Math.random(),y:Math.random(),r:.6+Math.random()*1.8,v:.0002+Math.random()*.0005,a:Math.random()*6.28});
+let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(cv);
+(function f(){if(vis){cx.clearRect(0,0,W,H);P.forEach(p=>{p.y-=p.v;p.a+=.01;if(p.y<-.02)p.y=1.02;const x=(p.x+Math.sin(p.a)*.01)*W,y=p.y*H;cx.beginPath();cx.arc(x,y,p.r*devicePixelRatio,0,6.28);cx.fillStyle='rgba(255,214,102,'+(.25+.35*Math.sin(p.a)**2)+')';cx.fill()})}requestAnimationFrame(f)})();}
+// manifesto scrub
+const mt=document.querySelector('[data-scrub]');
+if(mt){const wrapWords=node=>{[...node.childNodes].forEach(c=>{if(c.nodeType===3){const fr=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){fr.appendChild(document.createTextNode(' '));return}const sp=document.createElement('span');sp.className='sw';sp.textContent=t;fr.appendChild(sp)});c.replaceWith(fr)}else wrapWords(c)})};wrapWords(mt);
+const ws=[...mt.querySelectorAll('.sw')];const scrub=()=>{const r=mt.getBoundingClientRect();const p=RM?1:Math.min(Math.max((innerHeight*.85-r.top)/(r.height+innerHeight*.35),0),1);const k=Math.round(p*ws.length);ws.forEach((w,i)=>w.classList.toggle('lit',i<k))};addEventListener('scroll',scrub,{passive:true});scrub();}
+
+
+// vidéos d'Annie : démarrent quand elles sont à l'écran, se mettent en pause dès qu'elles en sortent.
+// Les navigateurs interdisent le son automatique : elles démarrent sans son (les sous-titres sont dans l'image), un bouton active le son.
+const voices=[...document.querySelectorAll('.voice')];let sonOn=false;
+voices.forEach(f=>{const v=f.querySelector('video'),b=f.querySelector('.voice-play');if(!v||!b)return;
+  v.muted=true;
+  const lance=()=>{v.muted=!sonOn;v.play().catch(()=>{v.muted=true;v.play().catch(()=>{})})};
+  b.addEventListener('click',()=>{sonOn=true;v.muted=false;v.controls=true;f.classList.add('playing');if(v.ended)v.currentTime=0;v.play().catch(()=>{})});
+  v.addEventListener('ended',()=>{v.dataset.fini='1'});
+  if(RM)return;
+  new IntersectionObserver(e=>{if(e[0].isIntersecting){if(v.dataset.fini){v.currentTime=0;delete v.dataset.fini}lance()}else v.pause()},{threshold:.5}).observe(v);
+});
+// vidéo muette du premier jour : tourne seulement quand elle est visible
+document.querySelectorAll('video[data-auto]').forEach(v=>{if(RM)return;new IntersectionObserver(e=>{e[0].isIntersecting?v.play().catch(()=>{}):v.pause()},{threshold:.25}).observe(v)});
+// la porte s'ouvre au défilement
+const porte=document.getElementById('porte');
+if(porte){const set=p=>porte.style.setProperty('--o',p);if(RM){set(1)}else{const up=()=>{const r=porte.getBoundingClientRect(),d=r.height-innerHeight;if(r.bottom<0||r.top>innerHeight)return;set(Math.min(Math.max((-r.top)/d*1.25,0),1).toFixed(3))};addEventListener('scroll',up,{passive:true});addEventListener('resize',up);up()}}
+// un geste : choisir ce qu'on offre
+const gb=[...document.querySelectorAll('.geste-chips button')];
+gb.forEach((b,k)=>b.addEventListener('click',()=>{gb.forEach((x,j)=>{x.classList.toggle('on',j===k);x.setAttribute('aria-pressed',j===k)});document.querySelectorAll('.geste-ph img').forEach((i,j)=>i.classList.toggle('on',j===k));document.querySelectorAll('.geste-txt').forEach((t,j)=>t.classList.toggle('on',j===k))}));
+// gallery filter + lightbox
+const figs=[...document.querySelectorAll('#gal figure')];
+document.querySelectorAll('.gal-bar button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.gal-bar button').forEach(x=>x.classList.toggle('on',x===b));const f=b.dataset.f;figs.forEach(fg=>{const ok=f==='all'||fg.dataset.c===f;fg.classList.toggle('hide',!ok);if(ok&&!RM){fg.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:500,easing:'cubic-bezier(.16,1,.3,1)'})}})}));
+const lb=document.getElementById('lb'),lbi=lb.querySelector('img'),lbc=lb.querySelector('.lbcap');let li=0;
+const vis=()=>figs.filter(f=>!f.classList.contains('hide'));
+const openLb=k=>{const v=vis();li=(k+v.length)%v.length;const f=v[li];lbi.src=f.querySelector('img').src;lbi.alt=f.querySelector('img').alt;lbc.textContent=f.querySelector('figcaption').textContent;lb.classList.add('on');document.body.style.overflow='hidden'};
+const closeLb=()=>{lb.classList.remove('on');document.body.style.overflow=''};
+figs.forEach(f=>f.addEventListener('click',()=>openLb(vis().indexOf(f))));
+lb.querySelector('.x').onclick=closeLb;lb.querySelector('.pv').onclick=e=>{e.stopPropagation();openLb(li-1)};lb.querySelector('.nx').onclick=e=>{e.stopPropagation();openLb(li+1)};
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
+addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')openLb(li+1);if(e.key==='ArrowLeft')openLb(li-1)});
+
+// ways -> select
+const sel=document.getElementById('f-way');
+document.querySelectorAll('.way').forEach(w=>w.addEventListener('click',()=>{document.querySelectorAll('.way').forEach(x=>x.classList.toggle('on',x===w));sel.value=w.dataset.w;document.getElementById('f-name').focus({preventScroll:innerWidth>900});}));
+// form -> WhatsApp
+document.getElementById('form')&&document.getElementById('form').addEventListener('submit',e=>{e.preventDefault();const n=document.getElementById('f-name');if(!n.value.trim()){n.focus();n.style.borderColor='#F2B705';return}
+const txt=`Bonjour Bosungi,\n\nJe souhaite : ${sel.value}\nNom : ${n.value.trim()}\nVille : ${document.getElementById('f-city').value.trim()||'-'}\n\n${document.getElementById('f-msg').value.trim()}`;
+window.open('https://wa.me/33617274106?text='+encodeURIComponent(txt),'_blank','noopener');const fp=document.querySelector('#form>p');if(fp)fp.textContent="Merci d'avoir pris le temps de vous arrêter."});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+/* ===== THÈME « BLEU CIEL » (option demandée par Annie, 9 nov. 2026) =====
+   Plus de bleu nuit : fonds bleu bébé + crème + soleil, couleurs tirées du logo. */
+:root{
+  --ink:#1D3557;--ink-2:#45597A;--ink-3:#6E7F99;
+  --sky:#3A8EDB;--sky-soft:#7DB9F0;--sky-tint:#DDEEFE;
+  --cloud:#F2F8FF;--mist:#E4F1FE;
+  --baby:#E6F3FF;--baby-2:#D3E9FD;--cream:#FFF8EA;--blush:#FFE8DF;
+  --line:rgba(29,53,87,.10);
+}
+/* boutons foncés -> bleu du logo */
+.btn-primary{background:var(--sky);color:#fff;box-shadow:0 10px 24px -10px rgba(58,142,219,.6)}
+.btn-primary:hover{background:#2F7CC6}
+.gal-bar button.on,.geste-chips button.on{background:var(--sky);color:#fff}
+
+/* menu posé sur le haut de page : texte foncé */
+.nav:not(.scrolled):not(.open) .brand b,.nav:not(.scrolled):not(.open) .menu a:not(.btn){color:var(--ink)}
+.nav:not(.scrolled):not(.open) .brand small{color:var(--ink-3)}
+.nav:not(.scrolled):not(.open) .menu a:not(.btn):hover{background:rgba(255,255,255,.6)}
+.nav:not(.scrolled):not(.open) .menu a.current{background:rgba(255,255,255,.75);color:var(--ink)}
+.nav:not(.scrolled):not(.open) .burger{background:rgba(255,255,255,.7)}
+.nav:not(.scrolled):not(.open) .burger span,.nav:not(.scrolled):not(.open) .burger span::before,.nav:not(.scrolled):not(.open) .burger span::after{background:var(--ink)}
+.nav:not(.scrolled):not(.open) .brand img{filter:none}
+
+/* HAUT DE PAGE ACCUEIL : ciel du matin */
+.cine{color:var(--ink);background:radial-gradient(70% 80% at 85% 20%,#FFF3D1 0%,rgba(255,243,209,0) 60%),radial-gradient(60% 70% at 0% 100%,var(--blush) 0%,rgba(255,232,223,0) 60%),linear-gradient(180deg,#DCEFFF 0%,#EEF7FF 100%)}
+.cine h1{text-shadow:none}
+.cine h1 .accent{color:var(--sky)}
+.cine-lead{color:var(--ink-2)}
+.cine .eyebrow.light{color:var(--sky)}
+.btn-glass{background:#fff;color:var(--ink);box-shadow:0 8px 22px -12px rgba(29,53,87,.35),inset 0 0 0 1px var(--line)}
+.btn-glass:hover{background:#fff}
+.btn-glass .pl{background:var(--sky);color:#fff}
+.cine-dots i{background:rgba(29,53,87,.18)}
+.cine-glow{background:radial-gradient(circle,rgba(242,183,5,.32),transparent 62%)}
+.arch-frame{background:var(--baby-2);box-shadow:0 40px 80px -34px rgba(58,142,219,.55);outline:8px solid #fff}
+.illu{background:rgba(29,53,87,.45)}
+
+/* bandeau défilant */
+.marquee{background:var(--baby-2);color:var(--ink)}
+.mq-track .accent{color:var(--sky)}
+
+/* en-têtes des autres pages */
+.phero{color:var(--ink);background:linear-gradient(180deg,#DCEFFF 0%,#EEF7FF 100%)}
+.phero-bg img{opacity:.22;filter:saturate(.9)}
+.phero-bg::after{background:linear-gradient(90deg,rgba(230,243,255,.97) 0%,rgba(230,243,255,.85) 55%,rgba(230,243,255,.35) 100%),radial-gradient(70% 90% at 90% 110%,rgba(242,183,5,.25),transparent 60%)}
+.phero h1 .accent{color:var(--sky)}
+.phero p{color:var(--ink-2)}
+.phero .eyebrow.light{color:var(--sky)}
+
+/* sections « maison » + prévention : bleu bébé */
+.maison{background:linear-gradient(180deg,var(--baby) 0%,#F3F9FF 100%);color:var(--ink)}
+.maison .eyebrow{color:var(--sky)}
+.maison .sec-head p,.maison p[style]{color:var(--ink-2)!important}
+.maison .accent{color:var(--sky)}
+.m-card{background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.m-card:hover{background:#fff}
+.m-card p{color:var(--ink-2)}
+.m-info div{border-top:1px solid rgba(29,53,87,.14)}
+.m-info small{color:var(--sky)}
+.m-verbs li{background:#fff;border:1px solid var(--line);color:var(--ink)}
+.m-verbs li:nth-child(3n+1){color:var(--sky)}
+.mt-pics figure{box-shadow:0 30px 60px -30px rgba(58,142,219,.55)}
+.mt-pics figure:last-child{border-color:#fff}
+.prev-grid div{background:#fff;border:1px solid var(--line)}
+.prev-grid b{color:var(--sky)}
+.prev-grid p{color:var(--ink-2)}
+.prev-quote{color:var(--ink)}
+.prev-quote cite{color:var(--ink-3)}
+
+/* appel « Ne passez pas votre chemin » : voile clair sur la photo */
+.appeal{color:var(--ink)}
+.appeal-bg::after{background:linear-gradient(90deg,rgba(234,245,255,.97) 0%,rgba(234,245,255,.9) 55%,rgba(234,245,255,.5) 100%)}
+.appeal-hard p{color:var(--ink-2)}
+.appeal h2 .accent{color:var(--sky)}
+.appeal-lead{color:var(--ink-2)}
+.needs div{background:rgba(255,255,255,.8);border:1px solid var(--line)}
+.needs b{color:var(--sky)}
+.needs span{color:var(--ink-2)}
+
+/* bandeaux bleus : bleu du logo, plus doux */
+.stat-band,.ha{background:linear-gradient(120deg,#5AA2E8 0%,#3A8EDB 100%)}
+
+/* statut, Samaritain, grande citation : crème chaleureuse */
+.statut,.samar{background:linear-gradient(180deg,var(--cream) 0%,#FFFDF7 100%);color:var(--ink)}
+.statut .eyebrow,.statut .accent,.samar .accent{color:var(--sky)}
+.statut p,.samar p{color:var(--ink-2)}
+.st-list{background:var(--line)}
+.st-list div{background:#fff}
+.st-list dt{color:var(--sky)}
+.mots blockquote.big{background:var(--baby);color:var(--ink)}
+.md .ph{background:var(--baby-2)}
+.md .ph.press{background:linear-gradient(135deg,#CFE6FD,#EAF5FF)}
+.md .ph.press span{color:var(--sky)}
+.voice{background:var(--baby-2)}
+
+/* la porte de la maison */
+.porte{background:var(--baby)}
+.porte-fond::after{background:linear-gradient(transparent,rgba(29,53,87,.75))}
+
+/* formulaire : carte blanche */
+.form{background:#fff;color:var(--ink);box-shadow:var(--shadow),inset 0 0 0 1.5px var(--sky-tint)}
+.form>p{color:var(--ink-2)}
+.field label{color:var(--ink)}
+.field input,.field select,.field textarea{color:var(--ink);background:var(--cloud);border-color:rgba(29,53,87,.12)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--sky);background:#fff}
+.form .note{color:var(--ink-3)}
+
+/* pied de page bleu bébé */
+footer{background:linear-gradient(180deg,var(--baby) 0%,var(--baby-2) 100%);color:var(--ink-2)}
+.f-top{border-bottom-color:rgba(29,53,87,.12)}
+.f-brand b,footer h4{color:var(--ink)}
+footer ul a:hover{color:var(--sky)}
+.f-law{color:var(--ink-3)}
+
+/* ===== PLUS CHALEUREUX (9 nov. 2026) : pêche, rose tendre, blanc crème ===== */
+:root{
+  --rose:#E2786A;--peach:#FFE3D6;--peach-2:#FFD3C2;--cream:#FFF6E6;--warm-white:#FFFCF7;
+  --cloud:#FFF7EE;--sun-tint:#FFEFC2;
+  --shadow:0 1px 2px rgba(150,90,60,.06),0 14px 34px -14px rgba(170,100,70,.22);
+}
+body,.voix,.signature,.facts{background:var(--warm-white)}
+/* accents en rose corail, plus tendres que le bleu */
+.cine h1 .accent,.phero h1 .accent,.maison .accent,.appeal h2 .accent,.samar .accent,.statut .accent,.manif-txt em,.manif-txt em .sw.lit,.mq-track .accent{color:var(--rose)}
+.letter .sign{color:var(--rose)}
+/* haut de page : lever de soleil */
+.cine{background:radial-gradient(60% 75% at 88% 18%,#FFE9B8 0%,rgba(255,233,184,0) 62%),radial-gradient(65% 75% at 0% 100%,#FFD9CB 0%,rgba(255,217,203,0) 62%),radial-gradient(50% 50% at 45% 40%,rgba(255,240,230,.7) 0%,rgba(255,240,230,0) 70%),linear-gradient(180deg,#DDEFFF 0%,#FFF4EA 100%)}
+.cine-glow{background:radial-gradient(circle,rgba(255,190,60,.42),transparent 62%)}
+.arch-frame{box-shadow:0 40px 80px -34px rgba(226,120,106,.5);outline-color:#FFF8EE}
+.phero{background:linear-gradient(180deg,#DDEFFF 0%,#FFF1E6 100%)}
+.phero-bg::after{background:linear-gradient(90deg,rgba(255,246,236,.97) 0%,rgba(255,244,234,.86) 55%,rgba(255,240,228,.35) 100%),radial-gradient(70% 90% at 90% 110%,rgba(255,180,90,.3),transparent 60%)}
+/* bandeau : pêche + pastilles soleil */
+.marquee{background:linear-gradient(90deg,var(--peach) 0%,#FFEFD2 100%)}
+/* sections : alternance bleu bébé / pêche / crème */
+.manif{background:linear-gradient(180deg,var(--warm-white) 0%,#FFF3E8 100%)}
+.maison{background:linear-gradient(180deg,#E6F3FF 0%,#FFF2E8 100%)}
+.appeal-bg::after{background:linear-gradient(90deg,rgba(255,244,234,.97) 0%,rgba(255,242,230,.9) 55%,rgba(255,238,226,.45) 100%)}
+.statut,.samar{background:linear-gradient(180deg,#FFF0E2 0%,var(--warm-white) 100%)}
+.mots blockquote.big{background:linear-gradient(120deg,var(--peach) 0%,#FFF0D8 100%)}
+.besoins{background:linear-gradient(180deg,var(--warm-white),#FFF2E6)}
+.stat-band,.ha{background:linear-gradient(120deg,#6CB0EE 0%,#3A8EDB 70%,#5B8FD8 100%);box-shadow:0 24px 50px -24px rgba(58,142,219,.6)}
+.m-verbs li:nth-child(3n+1){color:var(--rose)}
+.m-verbs li:nth-child(3n+2){background:#FFF3E6}
+.nd{border-top-color:var(--peach-2)}
+.axe:nth-child(4){--c:#FFE1D8}.axe:nth-child(4) .ic svg{color:var(--rose)}
+.form{box-shadow:var(--shadow),inset 0 0 0 1.5px var(--peach)}
+.field input,.field select,.field textarea{background:#FFF9F3}
+.geste-chips button{background:#FFF1E6}
+/* pied de page : coucher de soleil doux */
+footer{background:linear-gradient(180deg,#FFF1E6 0%,#FFE3D6 100%)}
+.f-top{border-bottom-color:rgba(170,100,70,.15)}
