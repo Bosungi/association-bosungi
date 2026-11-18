@@ -99,12 +99,12 @@ if THEME: EXTRA_CSS += '\n' + open(root / f'couleur-{THEME}.css', encoding='utf-
 head = head.replace('</style>', EXTRA_CSS + '\n</style>')
 
 PAGES = [
-    ('index.html', 'Accueil', None, ['HERO', 'VOIX', 'MISSION', 'PRES_TEASER', 'POLES_TEASER', 'JOURNAL_TEASER', 'MAISON_TEASER', 'IMPACT', 'APPEL', 'CONVICTION', 'CONTACT']),
+    ('index.html', 'Accueil', None, ['HERO', 'VOIX', 'MISSION', 'PRES_TEASER', 'POLES_TEASER', 'JOURNAL_TEASER', 'TEMOIGNAGES', 'MAISON_TEASER', 'IMPACT', 'APPEL', 'CONVICTION', 'CONTACT']),
     ('association.html', "L'association", ("Qui sommes-nous", "Du ghetto <span class='accent'>à l'espoir.</span>", "Fondée en mars 2021 par Annie Kiamuangana-Boloko, Bosungi aide les orphelines et les jeunes filles vulnérables de Kinshasa à se reconstruire.", 'fs_groupe'),
-        ['PRESIDENTE', 'ANNIE_TERRAIN', 'APPROCHE', 'METHODE', 'HISTOIRE', 'SUITE', 'EQUIPE', 'STATUT']),
+        ['PRESIDENTE', 'ANNIE_TERRAIN', 'MUKWEGE', 'APPROCHE', 'METHODE', 'HISTOIRE', 'SUITE', 'EQUIPE', 'STATUT']),
     ('constat.html', 'Le constat', ("Le constat", "Pourquoi c'est <span class='accent'>urgent.</span>", "À Kinshasa, les filles orphelines ou issues de familles très précaires sont les premières à quitter l'école et à être exposées aux violences.", 'kin_rue'),
         ['CONSTAT', 'PREVENTION', 'APPEL']),
-    ('actions.html', 'Nos actions', ("Nos actions", "Cinq pôles pour <span class='accent'>se relever.</span>", "Éducation, aide sociale, suivi psycho-médical, ateliers, soutien aux familles et à la communauté : un accompagnement complet, du premier jour à l'autonomie.", 'remise'),
+    ('actions.html', 'Nos actions', ("Nos actions", "Cinq pôles pour <span class='accent'>se relever.</span>", "Éducation, aide sociale, suivi psycho-médical, ateliers et sensibilisations, soutien aux familles et à la communauté : un accompagnement complet, du premier jour à l'autonomie.", 'remise'),
         ['JOURNAL', 'POLES']),
     ('maison.html', "La maison d'accueil", ("La maison d'accueil", "Une maison <span class='accent'>pour elles.</span>", "Inaugurée le 16 août 2026 et ouverte aux jeunes filles le 2 septembre, au 5B, 1ère rue, quartier Kimbangu, à Kalamu.", 'maison'),
         ['MAISON_REPONSE', 'PORTE', 'MAISON', 'PREMIER_JOUR', 'TERRAIN', 'BESOINS']),
@@ -113,7 +113,7 @@ PAGES = [
     ('partenaires.html', 'Partenaires', ("Partenaires", "Construisons <span class='accent'>ensemble.</span>", "Entreprises, fondations, écoles, associations : financez un chantier entier ou une part, et suivez ses résultats sur place.", 'groupe'),
         ['CHANTIERS', 'PARTENARIAT', 'CONTACT']),
     ('galerie.html', 'Galerie', ("Galerie", "Retour <span class='accent'>en images.</span>", "Rentrées scolaires, ateliers, journées avec les familles, ouverture de la maison : cinq ans d'actions en photos et en vidéos.", 'kits2026'),
-        ['GALERIE', 'MOTS', 'MEDIAS']),
+        ['GALERIE', 'TEMOIGNAGES', 'MOTS', 'MEDIAS']),
     ('soutenir.html', 'Nous soutenir', ("Nous soutenir", "Ne passez pas <span class='accent'>votre chemin.</span>", "Un don, un kit, une heure de votre temps, un partenariat : chaque geste compte pour changer la vie d'une fille.", 'hero4'),
         ['SAMARITAIN', 'IMPACT', 'GESTE', 'HELLOASSO', 'SOUTENIR', 'BESOINS', 'STATUT', 'CONTACT']),
 ]

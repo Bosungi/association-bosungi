@@ -1,5 +1,5 @@
 ---
-title: Octobre Rose, ensemble contre le cancer du sein
+title: Journée de sensibilisation au cancer du sein avec la Fondation Bomoko
 date: 2026-10-24
 categorie: Santé communautaire
 image: img/uploads/octobre-rose-2026-affiche.jpg

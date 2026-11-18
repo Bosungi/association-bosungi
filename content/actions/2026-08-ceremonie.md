@@ -3,11 +3,11 @@ title: Cérémonie d'ouverture de la maison
 date: 2026-08-16
 date_affichee: 16 août 2026
 categorie: Maison d'accueil
-image: kits2
-alt: Préparation des kits
+image: img/uploads/kits-scolaires-2026-tshirts.jpg
+alt: Les bénéficiaires en t-shirt Bosungi lors de la distribution des kits scolaires
 resume: Distribution des kits scolaires et d'hygiène aux bénéficiaires, lors de la cérémonie d'ouverture de la maison d'accueil.
 citation: Un espoir, un avenir.
-photos: kits2026, annie_kits
+photos: kits2, kits2026, annie_kits
 ---
 Le 16 août 2026, Bosungi inaugure sa maison d'accueil, au 5B, 1ère rue, quartier Kimbangu, dans la commune de Kalamu.
 
