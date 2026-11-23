@@ -190,6 +190,7 @@ textarea{resize:vertical;min-height:280px;line-height:1.7}
           </div>
           <input type="file" id="file" accept="image/*" hidden>
           <input type="file" id="fileInline" accept="image/*" hidden>
+          <input type="file" id="fileVideo" accept="video/*" hidden>
         </div>
 
         <div class="field">
@@ -205,14 +206,16 @@ textarea{resize:vertical;min-height:280px;line-height:1.7}
           <b>Astuce :</b> pour créer un sous-titre dans votre texte, écrivez <b>####</b> juste devant la ligne.<br>
           Exemple : <i>#### Une journée inoubliable</i>
           <br><br>
-          <b>Vos photos :</b> la photo principale s'affiche en grand en haut de l'action. Pour en mettre <b>dans le texte</b>, utilisez le bouton ci-dessous.
+          <b>Vos photos :</b> la photo principale s'affiche en grand en haut de l'action. Pour ajouter <b>des photos, une vidéo ou un lien dans le texte</b>, utilisez les boutons ci-dessous.
         </div>
 
         <div class="field">
           <label for="body">Texte de l'action</label>
           <div class="inline-tools">
-            <button type="button" class="mini" id="addPhoto">Insérer une photo dans le texte</button>
-            <span class="mini-hint">Placez le curseur où vous voulez la photo, puis cliquez</span>
+            <button type="button" class="mini" id="addPhoto">Insérer une photo</button>
+            <button type="button" class="mini" id="addVideo">Insérer une vidéo</button>
+            <button type="button" class="mini" id="addLien">Insérer un lien</button>
+            <span class="mini-hint">Placez le curseur à l'endroit voulu dans le texte, puis cliquez</span>
           </div>
           <textarea id="body" placeholder="Écrivez librement ici…&#10;&#10;Laissez une ligne vide entre vos paragraphes.&#10;&#10;#### Un sous-titre&#10;&#10;La suite de votre texte…" required></textarea>
         </div>
@@ -451,8 +454,10 @@ function corpsVersTexte(html) {
     if (m) return "#### " + m[1];
     m = l.match(/^<figure class="art-img"><img src="([^"]*)"[^>]*><\/figure>$/);
     if (m) { blocsSpeciaux.push(l); return "[photo enregistrée " + blocsSpeciaux.length + "]"; }
+    m = l.match(/^<figure class="art-img"><video /);
+    if (m) { blocsSpeciaux.push(l); return "[vidéo enregistrée " + blocsSpeciaux.length + "]"; }
     m = l.match(/^<p>([\s\S]*?)<\/p>$/);
-    if (m) return m[1].replace(/<br\s*\/?>/g, "\n");
+    if (m) return m[1].replace(/<br\s*\/?>/g, "\n").replace(/<a href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g, "[lien : $2 | $1]");
     blocsSpeciaux.push(l);
     return "[encadré " + blocsSpeciaux.length + "]";
   }).filter(Boolean).join("\n\n");
@@ -468,7 +473,7 @@ function modifierArticle(i) {
   $("citation").value = a.meta.citation || "";
   $("alt").value   = a.meta.alt || "";
   $("body").value  = /^\s*</.test(a.corps) ? corpsVersTexte(a.corps) : a.corps.trim();
-  imageData = null; inlinePhotos = [];
+  imageData = null; inlinePhotos = []; inlineVideos = [];
   $("preview").src = imgUrl(a.meta.image);
   $("preview").style.display = "block";
   $("dropTxt").textContent = "Photo actuelle — cliquez pour la remplacer";
@@ -484,7 +489,7 @@ function nouvelArticle() {
   modeEdition = null; blocsSpeciaux = [];
   ["title","desc","alt","body","citation"].forEach(id => $(id).value = "");
   $("tag").value = "Maison d'accueil"; $("dateAct").value = new Date().toISOString().slice(0, 10);
-  imageData = null; inlinePhotos = [];
+  imageData = null; inlinePhotos = []; inlineVideos = [];
   $("preview").style.display = "none";
   $("dropTxt").textContent = "Cliquez ici ou glissez votre photo";
   $("edTitre").innerHTML = 'Publier une nouvelle <em class="script">action</em>';
@@ -531,13 +536,56 @@ $("fileInline").addEventListener("change", e => {
     const bloc = (pos > 0 && txt[pos-1] !== "\n" ? "\n\n" : "") + "[photo" + n + "]\n\n";
     ta.value = txt.slice(0, pos) + bloc + txt.slice(pos);
     ta.focus(); ta.selectionStart = ta.selectionEnd = pos + bloc.length;
-    btn.disabled = false; btn.textContent = "Insérer une photo dans le texte";
+    btn.disabled = false; btn.textContent = "Insérer une photo";
     show($("formMsg"), "ok", "Photo " + n + " ajoutée dans votre texte.");
     setTimeout(() => hide($("formMsg")), 4000);
   };
   rd.readAsDataURL(f);
   e.target.value = "";
 });
+
+// ---------- vidéos et liens dans le texte ----------
+let inlineVideos = [];
+function insererAuCurseur(bloc, seul) {
+  const ta = $("body"), pos = ta.selectionStart, txt = ta.value;
+  if (seul) bloc = (pos > 0 && txt[pos-1] !== "\n" ? "\n\n" : "") + bloc + "\n\n";
+  ta.value = txt.slice(0, pos) + bloc + txt.slice(pos);
+  ta.focus(); ta.selectionStart = ta.selectionEnd = pos + bloc.length;
+}
+$("addVideo").addEventListener("click", () => $("fileVideo").click());
+$("fileVideo").addEventListener("change", e => {
+  const f = e.target.files[0]; e.target.value = "";
+  if (!f || !f.type.startsWith("video/")) return;
+  if (f.size > 45 * 1024 * 1024) {
+    show($("formMsg"), "err", "Cette vidéo est trop lourde (" + Math.round(f.size / 1048576) + " Mo). Maximum 45 Mo : raccourcissez-la ou envoyez-la en qualité plus basse depuis votre téléphone.");
+    return;
+  }
+  const btn = $("addVideo");
+  btn.disabled = true; btn.textContent = "Chargement de la vidéo…";
+  const rd = new FileReader();
+  rd.onload = () => {
+    const n = inlineVideos.length + 1;
+    const ext = (f.name.match(/\.(mp4|mov|m4v|webm)$/i) || [".mp4"])[0].toLowerCase();
+    inlineVideos.push({ data: rd.result.split(",")[1], ext: ext === ".mov" ? ".mov" : ext, marker: "[vidéo" + n + "]" });
+    insererAuCurseur("[vidéo" + n + "]", true);
+    btn.disabled = false; btn.textContent = "Insérer une vidéo";
+    show($("formMsg"), "ok", "Vidéo " + n + " ajoutée dans votre texte. Elle sera envoyée quand vous cliquerez sur Publier.");
+    setTimeout(() => hide($("formMsg")), 5000);
+  };
+  rd.readAsDataURL(f);
+});
+$("addLien").addEventListener("click", () => {
+  let url = prompt("Collez l'adresse du lien (par exemple une page Facebook ou un article) :");
+  if (!url) return;
+  url = url.trim();
+  if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+  const texte = (prompt("Quel texte doit s'afficher pour ce lien ?", "Voir la publication") || "Voir le lien").trim();
+  insererAuCurseur("[lien : " + texte.replace(/[\[\]|]/g, " ") + " | " + url + "]", false);
+});
+function liens(t) {
+  return t.replace(/\[lien\s*:\s*([^|\]]+?)\s*\|\s*(https?:\/\/[^\]\s]+)\s*\]/g,
+    (x, txt, url) => '<a href="' + url.replace(/"/g, "%22") + '" target="_blank" rel="noopener">' + txt + "</a>");
+}
 
 // ---------- publier / enregistrer ----------
 $("publish").addEventListener("click", async () => {
@@ -570,6 +618,16 @@ $("publish").addEventListener("click", async () => {
       if (!r2.ok) throw new Error("photo");
     }
 
+    for (let i = 0; i < inlineVideos.length; i++) {
+      const vd = inlineVideos[i];
+      if (!body.includes(vd.marker)) continue;
+      vd.path = "img/uploads/" + slug + "-video" + Date.now() + "-" + (i + 1) + vd.ext;
+      btn.innerHTML = '<span class="spin"></span> Envoi de la vidéo ' + (i + 1) + '…';
+      const r3 = await api("/contents/" + vd.path, {
+        method: "PUT", body: JSON.stringify({ message: "Vidéo article : " + slug, content: vd.data }) });
+      if (!r3.ok) throw new Error("video");
+    }
+
     const html = body.split(/\n\s*\n/).map(p => {
       p = p.trim();
       if (!p) return "";
@@ -586,17 +644,19 @@ $("publish").addEventListener("click", async () => {
           if (/^#{2,}/.test(l)) {
             viderTampon();
             const titre = l.replace(/^#+\s*/, "").trim();
-            if (titre) morceaux.push("<h4>" + titre + "</h4>");
-          } else if (l) { tampon.push(l); }
+            if (titre) morceaux.push("<h4>" + liens(titre) + "</h4>");
+          } else if (l) { tampon.push(liens(l)); }
         }
         viderTampon();
         return morceaux.join("\n");
       }
       for (const ph of inlinePhotos) if (ph.marker === p)
         return '<figure class="art-img"><img src="' + ph.path + '" alt="' + (($("alt").value.trim() || title).replace(/"/g, "'")) + '"></figure>';
-      const bs = p.match(/^\[(?:encadré|photo enregistrée) (\d+)\]$/);
+      for (const vd of inlineVideos) if (vd.marker === p && vd.path)
+        return '<figure class="art-img"><video src="' + vd.path + '" controls preload="metadata" playsinline style="width:100%;border-radius:14px;background:#0E1E3A"></video></figure>';
+      const bs = p.match(/^\[(?:encadré|photo enregistrée|vidéo enregistrée) (\d+)\]$/);
       if (bs && blocsSpeciaux[+bs[1] - 1]) return blocsSpeciaux[+bs[1] - 1];
-      return "<p>" + p.replace(/\n/g, "<br>") + "</p>";
+      return "<p>" + liens(p).replace(/\n/g, "<br>") + "</p>";
     }).filter(Boolean).join("\n");
 
     const date = $("dateAct").value || (modeEdition && modeEdition.date) || new Date().toISOString().slice(0, 10);
@@ -628,6 +688,7 @@ $("publish").addEventListener("click", async () => {
     show($("formMsg"), "err",
       (m.indexOf("sha") >= 0 || m.indexOf("exists") >= 0)
         ? "Une action porte déjà ce titre. Changez légèrement le titre et réessayez."
+        : m === "video" ? "La vidéo n'a pas pu être envoyée. Vérifiez votre connexion (la wifi est préférable pour une vidéo) et réessayez."
         : "L'enregistrement n'a pas fonctionné. Vérifiez votre connexion internet et réessayez.");
     window.scrollTo({ top: 0, behavior: "smooth" });
   } finally {

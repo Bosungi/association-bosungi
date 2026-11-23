@@ -345,3 +345,4 @@
 .mk-grid figure{margin:0;border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow)}
 .mk-grid img{width:100%;height:100%;object-fit:cover;display:block}
 @media (max-width:760px){.tm-grid,.mk-grid{grid-template-columns:1fr}}
+.art-body p a,.art-body h4 a{color:var(--sun-deep);text-decoration:underline;text-underline-offset:3px;font-weight:600}
