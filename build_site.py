@@ -108,12 +108,14 @@ PAGES = [
         ['JOURNAL', 'POLES']),
     ('maison.html', "La maison d'accueil", ("La maison d'accueil", "Une maison <span class='accent'>pour elles.</span>", "Inaugurée le 16 août 2026 et ouverte aux jeunes filles le 2 septembre, au 5B, 1ère rue, quartier Kimbangu, à Kalamu.", 'maison'),
         ['MAISON_REPONSE', 'PORTE', 'MAISON', 'PREMIER_JOUR', 'TERRAIN', 'BESOINS']),
-    ('transparence.html', 'Transparence', ("Transparence", "Chaque euro <span class='accent'>a une adresse.</span>", "Bosungi est une structure de terrain, sans intermédiaire : l'argent arrive directement dans la Maison d'accueil de Kimbangu.", 'kits2026'),
+    ('transparence.html', 'Où va votre argent', ("Où va votre argent", "Chaque euro <span class='accent'>a une adresse.</span>", "Bosungi est une structure de terrain, sans intermédiaire : l'argent arrive directement dans la Maison d'accueil de Kimbangu.", 'kits2026'),
         ['TRANSPARENCE', 'HELLOASSO', 'CONTACT']),
     ('partenaires.html', 'Partenaires', ("Partenaires", "Construisons <span class='accent'>ensemble.</span>", "Entreprises, fondations, écoles, associations : financez un chantier entier ou une part, et suivez ses résultats sur place.", 'groupe'),
         ['CHANTIERS', 'PARTENARIAT', 'CONTACT']),
     ('galerie.html', 'Galerie', ("Galerie", "Retour <span class='accent'>en images.</span>", "Rentrées scolaires, ateliers, journées avec les familles, ouverture de la maison : cinq ans d'actions en photos et en vidéos.", 'kits2026'),
         ['GALERIE', 'TEMOIGNAGES', 'MOTS', 'MEDIAS']),
+    ('contact.html', 'Contact', ("Contact", "Restons en <span class='accent'>contact.</span>", "Une question, une envie d'aider, une visite de la maison d'accueil ? Écrivez-nous, nous répondons à chaque message.", 'groupe'),
+        ['CONTACT_PAGE']),
     ('soutenir.html', 'Nous soutenir', ("Nous soutenir", "Ne passez pas <span class='accent'>votre chemin.</span>", "Un don, un kit, une heure de votre temps, un partenariat : chaque geste compte pour changer la vie d'une fille.", 'hero4'),
         ['SAMARITAIN', 'IMPACT', 'GESTE', 'HELLOASSO', 'SOUTENIR', 'BESOINS', 'STATUT', 'CONTACT']),
 ]
@@ -143,16 +145,42 @@ for i, a in enumerate(ACTIONS):
 """
     PAGES.append((a['slug'] + '.html', a['title'], (a['date_affichee'] + ' · ' + a['categorie'], _h.escape(a['title']), _h.escape(a['resume']), a['image']), ['ART_' + a['slug'], 'HELLOASSO']))
 
-NAV_LINKS = [('index.html', 'Accueil'), ('constat.html', 'Le constat'), ('association.html', "L'association"),
-             ('maison.html', "Maison d'accueil"), ('actions.html', 'Nos actions'), ('transparence.html', 'Transparence'),
-             ('partenaires.html', 'Partenaires'), ('galerie.html', 'Galerie')]
+# Menu organisé en 5 rubriques (sous-menus) + Contact + bouton don
+CHEV = '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>'
+MENU = [
+    ('index.html', 'Accueil', None),
+    ('association.html', "L'association", [('association.html', 'Qui sommes-nous', 'Notre histoire et notre mission'),
+                                           ('association.html#presidente', 'La présidente', 'Annie Kiamuangana-Boloko'),
+                                           ('association.html#equipe', "L'équipe", 'Les personnes derrière Bosungi'),
+                                           ('constat.html', 'Pourquoi nous agissons', 'La situation des filles à Kinshasa')]),
+    ('maison.html', "La Maison d'accueil", None),
+    ('actions.html', 'Nos actions', [('actions.html', 'Toutes nos actions', 'Le journal de terrain, action par action'),
+                                     ('actions.html#poles', 'Nos 5 pôles', 'Éducation, social, santé, ateliers, familles'),
+                                     ('galerie.html', 'Photos et vidéos', 'Retour en images')]),
+    ('soutenir.html', 'Nous aider', [('soutenir.html', 'Faire un don', 'Kits, dons, bénévolat'),
+                                     ('partenaires.html', 'Devenir partenaire', 'Entreprises, fondations, écoles'),
+                                     ('transparence.html', 'Où va votre argent', 'Nos comptes, en toute clarté')]),
+    ('contact.html', 'Contact', None),
+]
+PAGE_GROUPE = {'constat.html': 'association.html', 'galerie.html': 'actions.html',
+               'partenaires.html': 'soutenir.html', 'transparence.html': 'soutenir.html'}
 
 def nav(active):
+    actif = PAGE_GROUPE.get(active, active)
     cur = ' class="current" aria-current="page"'
-    links = ''.join(f'<a href="{h}"{cur if h == active else ""}>{t}</a>' for h, t in NAV_LINKS)
+    links = ''
+    for h, t, sous in MENU:
+        if not sous:
+            links += f'<a href="{h}"{cur if h == actif else ""}>{t}</a>'
+        else:
+            items = ''.join(f'<a href="{sh}"><b>{st}</b><small>{sd}</small></a>' for sh, st, sd in sous)
+            links += (f'<div class="dd"><a href="{h}" class="dd-t{" current" if h == actif else ""}" aria-haspopup="true">{t}{CHEV}</a>'
+                      f'<div class="dd-m">{items}</div></div>')
     n = B['NAV']
     n = re.sub(r'<nav class="menu" id="menu"[^>]*>.*?</nav>',
-               f'<nav class="menu" id="menu" aria-label="Navigation principale">{links}<a href="soutenir.html" class="btn btn-sun">Nous soutenir</a></nav>', n, flags=re.S)
+               f'<nav class="menu" id="menu" aria-label="Navigation principale">{links}<a href="soutenir.html" class="btn btn-sun">Faire un don</a></nav>', n, flags=re.S)
+    n += ('<script>document.querySelectorAll(".menu .dd-t").forEach(function(t){t.addEventListener("click",function(e){'
+          'if(window.matchMedia("(max-width:1100px)").matches){e.preventDefault();e.stopImmediatePropagation();t.parentNode.classList.toggle("open")}},true)});</script>')
     return n.replace('href="#top"', 'href="index.html"')
 
 def page_hero(eyebrow, title, lead, img):
@@ -170,7 +198,7 @@ def page_hero(eyebrow, title, lead, img):
 # liens internes : anciens #ancres de la page unique vers les bonnes pages
 LINKS = {'#soutenir': 'soutenir.html', '#maison': 'maison.html', '#presidente': 'association.html#presidente',
          '#association': 'association.html', '#histoire': 'association.html#histoire', '#galerie': 'galerie.html',
-         '#actions': 'actions.html', '#contact': 'soutenir.html#contact', '#manifeste': '#manifeste'}
+         '#actions': 'actions.html', '#contact': 'contact.html', '#manifeste': '#manifeste'}
 
 out = root / ('site-' + THEME if THEME else 'site')
 if out.exists(): shutil.rmtree(out)
