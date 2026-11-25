@@ -405,3 +405,6 @@
   .menu .dd:hover .chev{transform:none}
 }
 @media (max-width:1100px){.nav.open .menu .dd-t{display:flex!important;flex-wrap:nowrap;align-items:center;justify-content:space-between;width:100%}.nav.open .menu .dd-t .chev{margin-left:12px;flex:none}.nav.open .menu>a:not(.btn),.nav.open .menu .dd-t{color:var(--ink)!important}}
+
+.team8 .member.lead{grid-column:span 2}
+.team8 .member.lead .ph{aspect-ratio:2.1/.8}
